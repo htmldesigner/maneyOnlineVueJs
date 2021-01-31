@@ -1,32 +1,57 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+ <div id="app">
+  <Loader v-if="loader"/>
+  <NavBar/>
+  <router-view/>
+  <Footer/>
+  <SuccessPopup />
+ </div>
 </template>
+<script>
+ import NavBar from "./components/NavBar";
+ import Footer from "./components/Footer";
+ import Loader from "./components/Loader";
+ import SuccessPopup from "./components/SuccessPopup";
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+ export default {
+  components: {
+   NavBar,
+   Footer,
+   Loader,
+   SuccessPopup
+  },
+  computed: {
+   success() {
+    return this.$store.getters.success
+   },
+   loader() {
+   return  this.$store.getters.loading
+   },
+   isUserLoggedIn() {
+    return this.$store.getters.isUserLoggedIn
+   },
+   userFormStatus() {
+    return this.$store.getters.userFormStatus
+   }
+  },
+  data() {
+   return {}
+  },
+  // beforeUpdate() {
+  //  if (this.isUserLoggedIn) {
+  //    this.$store.dispatch('getUserForm').then(()=>{
+  //      if (!this.userFormStatus){
+  //        this.$router.push('/registration')
+  //      }
+  //    })
+  //  }
+  // },
+  mounted() {
+   if (this.isUserLoggedIn) {
+    console.log('App comp anketa')
+    this.$store.dispatch('getUserForm')
+   }
   }
-}
-</style>
+ };
+</script>
+
