@@ -51,6 +51,7 @@ export default {
   * @return {AxiosPromise}
   */
  sendUserForm(payload) {
+  console.log(payload)
   return axios(this.dataPost('/user/anketa', payload));
  },
 
@@ -96,17 +97,88 @@ export default {
   * @param payload
   * @return {AxiosPromise}
   */
- requestSmsForContract(payload){
+ requestSmsForContract(payload) {
   return axios(this.dataPost('/loan/sign/sendsms', {id: payload}))
  },
 
- confirmContractBySMS(payload){
+ confirmContractBySMS(payload) {
   return axios(this.dataPost('/loan/sign/checksms', {id: payload.id, code: payload.code}))
  },
-
- setPayment(payload){
+ /**
+  *  Выбор метода выплаты займа
+  * @param payload
+  * @return {AxiosPromise}
+  */
+ setPayment(payload) {
   return axios(this.dataPost('/loan/setpayment', payload))
- }
+ },
+ /**
+  *  Запрос выплаты
+  * @param payload
+  * @return {AxiosPromise}
+  */
+ requestPayment(payload) {
+  return axios(this.dataGet('/loan/requestpayment?id=' + payload))
+ },
 
+ /**
+  * Выплота долга
+  * @param payload
+  * @return {AxiosPromise}
+  */
+ rePayment(payload) {
+  return axios(this.dataPost('/loan/repayment', payload))
+ },
+
+ /**
+  * Остаток по текущему займу
+  * @param payload
+  * @return {AxiosPromise}
+  */
+ debt(payload) {
+  return axios(this.dataGet('/loan/debt?id=' + payload))
+ },
+ /**
+  * Выбор метода выплат (шаг 3)
+  * @param payload
+  * @return {AxiosPromise}
+  */
+ selectPaymentMethod(payload) {
+  return axios(this.dataPost('/user/payment_method', {method: payload}))
+ },
+ /**
+  * Проверка выбран ли метод выплат (в шаге 3)
+  * @return {AxiosPromise}
+  */
+ checkPaymentMethod() {
+  return axios(this.dataGet('/user/payment_method'))
+ },
+
+ /**
+  * Получить чат саппорта
+  * @return {AxiosPromise}
+  */
+ getSupport() {
+  return axios(this.dataGet('/support'))
+ },
+ /**
+  * Отправить сообщение в саппорт
+  * @param payload
+  * @return {AxiosPromise}
+  */
+ sendMessageToSupport(payload) {
+  return axios(this.dataPost('/support', payload))
+ },
+ /**
+  * Востоновление пароля
+  * @param payload
+  * @return {AxiosPromise}
+  */
+ forgotPhone(payload) {
+  return axios(this.dataPost('/forgot/phone', payload))
+ },
+ forgotCheck(payload){
+  return axios(this.dataPost('/forgot/check', payload))
+ }
 
 }

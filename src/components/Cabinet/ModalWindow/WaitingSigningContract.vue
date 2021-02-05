@@ -11,7 +11,7 @@
      </button>
      <div class="d-flex flex-column text-center">
       <div v-if="!contract">Ожидайте...</div>
-      <a :download="contract" v-else :href="contract" class="btn btn-lg btn-primary btn-block">Скачать договор</a>
+      <a :download="contract" v-else :href="contract" target="_blank" class="btn btn-lg btn-primary btn-block">Скачать договор</a>
      </div>
     </form>
    </div>
@@ -31,12 +31,17 @@
   computed: {
    contract() {
     return this.$store.getters.getContract
-   }
+   },
   },
   methods: {
-   modalInit(loanID) {
+   async modalInit(loanID) {
     $('#waitingSigningContract').modal('show');
-    this.$store.dispatch('getContract', loanID)
+    await this.$store.dispatch('getContract', loanID)
+    await this.$store.dispatch('getLoanList')
+    if (!this.contract) {
+     await this.modalHide()
+    }
+
    },
    modalHide() {
     $('#waitingSigningContract').modal('hide');

@@ -15,7 +15,7 @@
 
       <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
        <label class="w-50 text-left">Способ выплаты займа</label>
-       <select class="custom-select" id="inputGroupSelect01" v-model="selectedMethod">
+       <select class="custom-select" v-model="selectedMethod">
         <option v-for="(method, idx) in paymentMethods" :key="idx" :value="method.id">{{method.value}}</option>
        </select>
       </div>
@@ -58,12 +58,10 @@
     $('#PaymentMethodModal').modal('hide');
    },
    async onSubmit() {
-    try {
-     if (this.selectedMethod) {
-      this.$store.dispatch('setPayment', {id: this.loanId, method: +this.selectedMethod})
-     }
-    } catch (error) {
-     throw error
+    if (this.selectedMethod) {
+     await this.$store.dispatch('setPayment', {id: this.loanId, method: +this.selectedMethod})
+     this.modalHide()
+     await this.$store.dispatch('getLoanList')
     }
    }
   }

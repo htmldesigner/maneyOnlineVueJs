@@ -4,7 +4,7 @@
    <dt class="col-md-3">
     <div class="input-group mb-4 d-flex flex-column">
      <label class="mb-4 personal-card-text">БАНКОВСКИЕ КАРТЫ</label>
-     <select class="custom-select w-100" id="inputGroupSelect01">
+     <select class="custom-select w-100">
       <option selected="">5260-59хх-*****</option>
       <option value="1">One</option>
       <option value="2">Two</option>
@@ -20,7 +20,7 @@
    <dt class="col-md-3">
     <div class="input-group mb-4 d-flex flex-column">
      <label class="mb-4 personal-card-text">БАНКОВСКИЕ СЧЕТА</label>
-     <select class="custom-select w-100" id="inputGroupSelect01">
+     <select class="custom-select w-100">
       <option selected="">5260-59хх-*****</option>
       <option value="1">One</option>
       <option value="2">Two</option>

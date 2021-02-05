@@ -23,9 +23,11 @@
      <Button :status="loan.status" :loanID="loan.id" @actions="actions"/>
     </td>
     <td>
-     <button v-if="loan.status === 9"
-             type="button"
-             class="btn btn-primary pay"
+     <button
+      v-if="loan.status === 9"
+      type="button"
+      class="btn btn-primary pay"
+      @click="$refs.RepaymentModal.modalInit(loan.id)"
      >Оплатить
      </button>
     </td>
@@ -42,15 +44,16 @@
     <li class="page-item active"><a class="page-link" href="#">1</a></li>
     <li class="page-item"><a class="page-link" href="#">2</a></li>
     <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-     <a class="page-link arrow-right mr-0" href="#"></a>
+    <li class="page-item"><a class="page-link arrow-right mr-0" href="#"></a>
     </li>
    </ul>
   </nav>
 
-<PaymentMethod ref="PaymentMethodModal"/>
-<WaitingSigningContract  ref="WaitingSigningContractModal"/>
-<ConfirmSignBySMS  ref="ConfirmSignBySMSModal"/>
+  <PaymentMethod ref="PaymentMethodModal"/>
+  <WaitingSigningContract ref="WaitingSigningContractModal"/>
+  <ConfirmSignBySMS ref="ConfirmSignBySMSModal"/>
+  <GetMoney ref="GetMoneyModal"/>
+  <Repayment ref="RepaymentModal"/>
  </div>
 
  <div v-else class="form-control d-flex flex-column align-items-center border-0 pt-5 pb-5 empty">
@@ -64,10 +67,14 @@
  import PaymentMethod from "./ModalWindow/PaymentMethod";
  import WaitingSigningContract from "./ModalWindow/WaitingSigningContract";
  import ConfirmSignBySMS from "./ModalWindow/ConfirmSignBySMS";
+ import GetMoney from "./ModalWindow/GetMoney";
+ import Repayment from "./ModalWindow/Repayment";
 
  export default {
   name: "Loans",
   components: {
+   Repayment,
+   GetMoney,
    Button,
    PaymentMethod,
    WaitingSigningContract,
@@ -78,22 +85,26 @@
     return this.$store.getters.getLoanList
    }
   },
-  data(){
+  data() {
    return {
     loanID: null
    }
   },
-
   methods: {
-   actions(value) {
+   async actions(value) {
     switch (value.action) {
      case 'selectPaymentMethod':
       return this.$refs.PaymentMethodModal.modalInit(value.loanID)
      case 'waitingSigningContract':
       return this.$refs.WaitingSigningContractModal.modalInit(value.loanID)
      case 'confirmSignBySMS':
-      this.$store.dispatch('requestSmsForContract', value.loanID)
-      return this.$refs.ConfirmSignBySMSModal.modalInit(value.loanID)
+      let response = await this.$store.dispatch('requestSmsForContract', value.loanID)
+      if (response?.data?.data?.message) {
+       this.$refs.ConfirmSignBySMSModal.modalInit(value.loanID)
+      }
+      return
+     case 'getMoney':
+      return this.$refs.GetMoneyModal.modalInit(value.loanID)
     }
    }
   },

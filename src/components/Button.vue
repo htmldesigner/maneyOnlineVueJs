@@ -34,7 +34,7 @@
      {loanID: this.loanID, value: 'Способ выплаты выбран ', class: 'btn-outline-info', action: 'waitingSigningContract'},
      {loanID: this.loanID, value: 'Ожидание подписание договора', class: 'btn-outline-warning', action: "confirmSignBySMS"},
      {loanID: this.loanID, value: 'SMS для подписания договора отправленна', class: 'btn-outline-info', action: 'confirmSignBySMS'},
-     {loanID: this.loanID, value: 'Договор подписан', class: 'btn-outline-success', action: false},
+     {loanID: this.loanID, value: 'Договор подписан', class: 'btn-outline-success', action: 'getMoney'},
      {loanID: this.loanID, value: 'Выплата отправлена в эквайринг', class: 'btn-outline-warning', action: false},
      {loanID: this.loanID, value: 'Займ выдан', class: 'btn-outline-success', action: false},
      {loanID: this.loanID, value: 'Ошибка выплаты', class: 'btn-outline-danger', action: false},

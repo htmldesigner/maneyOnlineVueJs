@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import Auth from "./Auth";
 import common from "./common";
 import Cabinet from "./Cabinet";
+import SupportChat from "./SupportChat";
 
 Vue.use(Vuex)
 
@@ -11,6 +12,6 @@ export default new Vuex.Store({
  mutations: {},
  actions: {},
  modules: {
-  Auth, Cabinet, common,
+  Auth, Cabinet, SupportChat, common,
  }
 })

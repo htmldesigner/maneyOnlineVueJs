@@ -21,11 +21,13 @@ export default {
    delete axios.defaults.headers.common['Token']
   },
   SET_USER_FORM(state, user) {
-   console.log(user)
    state.userForm = user
   },
   SET_USER_FORM_STATUS(state, payload) {
    state.userFormStatus = payload
+  },
+  SET_PAYMENT_METHOD(state, payload) {
+   state.methodGetMoneyStatus = payload
   }
  },
  actions: {
@@ -36,17 +38,53 @@ export default {
     const response = await api.loginUser(payload)
     const token = await response.data.token
     await commit('SET_TOKEN', token)
+    await dispatch('getUserForm') // Запрос формы
+    await dispatch('checkPaymentMethod') // Запрос метода выплат
     commit('setLoading', false)
    } catch (error) {
     commit('setLoading', false)
-    commit('setError', 'Неверный логин или пароль.')
-    throw error
+    await commit('setError', 'Неверный логин или пароль.')
+    commit('LOG_OUT')
+    // throw error
    }
   },
 
   logOut({commit}) {
    commit('LOG_OUT')
+   commit('SET_LOAN', null)
+   commit('SET_USER_FORM', null)
   },
+  /**
+   * Востоновление пароля
+   * @param commit
+   * @param payload
+   * @return {Promise<void>}
+   */
+  async forgotPhone({commit}, payload) {
+   commit('clearError')
+   try {
+    return await api.forgotPhone(payload)
+   } catch (e) {
+    commit('setError', "Ошибка СМС центра попробуйте через 3 минуты")
+   }
+  },
+
+  async forgotCheck({commit, dispatch}, payload) {
+   commit('clearError')
+   try {
+    const response = await api.forgotCheck(payload)
+    const token = await response.data.data.token
+    if (token) {
+     await commit('SET_TOKEN', token)
+     await dispatch('getUserForm') // Запрос формы
+     await dispatch('checkPaymentMethod') // Запрос метода выплат
+    }
+    commit('setSuccess', 'Успешно')
+   } catch (e) {
+    commit('setError', "Ошибка СМС центра попробуйте через 3 минуты")
+   }
+  },
+
 
   /**
    * Предварительная отправка данных пользователя (для получения sms) если не существует то регистрируется
@@ -72,7 +110,7 @@ export default {
    try {
     return await api.confirmUserDate(payload)
    } catch (error) {
-    console.log(error.response.data.error)
+    await commit('setError', 'Неверный СМС код')
     throw error
    }
   },
@@ -108,12 +146,10 @@ export default {
 
     userForm.LichiyeDannyeObshayaInformatcyaKolonkiLevayaTipZanyatosti = response.data.data.LichiyeDannyeObshayaInformatcyaKolonkiLevayaTipZanyatosti
     userForm.RabotaOsnovnoeMestoDolzhnost = response.data.data.RabotaOsnovnoeMestoDolzhnost
-    userForm.DokhodyRaskhodyDokhodyEzhemesyachiye = response.data.data.DokhodyRaskhodyDokhodyEzhemesyachiye
+    userForm.DokhodyRaskhodyDokhodyEzhemesyachiyeOsnovMestoRaboty = response.data.data.DokhodyRaskhodyDokhodyEzhemesyachiyeOsnovMestoRaboty
     userForm.DokhodyRaskhodyRaskhodyViplatyPoCreditam = response.data.data.DokhodyRaskhodyRaskhodyViplatyPoCreditam
     userForm.DokhodyRaskhodyDokhodyEzhemesyachiyePoSovmestitelstvu = response.data.data.DokhodyRaskhodyDokhodyEzhemesyachiyePoSovmestitelstvu
     userForm.KontaktnayaInformatsyaTelefonyMobilniy = response.data.data.KontaktnayaInformatsyaTelefonyMobilniy
-
-    userForm.test = '1'
 
     let candidate = true
     for (let key in userForm) {
@@ -129,20 +165,52 @@ export default {
     }
     commit('setLoading', false)
    } catch (error) {
-    console.log(error.response.data.error)
     commit('setLoading', false)
     dispatch('logOut')
     router.push('/login')
     commit('setError', 'Неверный логин или пароль.')
+    // throw error
+   }
+  },
+  /**
+   * Отправить форму пользователя
+   * @param commit
+   * @param payload
+   * @return {Promise<void>}
+   */
+  async sendUserForm({commit}, payload) {
+   try {
+    await api.sendUserForm(payload)
+   } catch (error) {
     throw error
    }
   },
-
-  async sendUserForm({commit}, payload){
+  /**
+   * Выбрать метод выплаты (шаг 3)
+   * @param commit
+   * @param payload
+   * @return {Promise<void>}
+   */
+  async selectPaymentMethod({commit}, payload) {
    try {
-    await api.sendUserForm(payload)
-   }catch (error) {
-    throw error
+    await api.selectPaymentMethod(payload)
+   } catch (error) {
+    // throw error
+   }
+  },
+  /**
+   * Проверка выбран ли метод выплат (в шаге 3)
+   * @return {Promise<void>}
+   */
+  async checkPaymentMethod({commit}, payload) {
+   commit('clearError')
+   commit('setLoading', true)
+   try {
+    const response = await api.checkPaymentMethod()
+    commit('SET_PAYMENT_METHOD', response.data.data.method)
+    commit('setLoading', false)
+   } catch (error) {
+    commit('setLoading', false)
    }
   }
  },
@@ -150,13 +218,13 @@ export default {
   isUserLoggedIn(state) {
    return state.token ? state.token : localStorage.getItem('token') || false
   },
-  userFormStatus(state){
+  userFormStatus(state) {
    return state.userFormStatus
   },
-  methodGetMoneyStatus(state){
+  methodGetMoneyStatus(state) {
    return state.methodGetMoneyStatus
   },
-  getFormUser(state){
+  getFormUser(state) {
    return state.userForm
   }
  }

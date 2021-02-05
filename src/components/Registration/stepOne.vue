@@ -162,11 +162,13 @@
     try {
      if (smsCode) {
       this.user['code'] = smsCode
-      await this.$store.dispatch('confirmUserDate', this.user)
+     const response = await this.$store.dispatch('confirmUserDate', this.user)
       await this.$refs.phoneModal.modalHide()
       await this.$store.dispatch('setSuccess', 'Телефон подтвержден')
-      await this.$store.dispatch('loginUser', {username: this.user.phone, password: this.user.password})
-      await this.$store.dispatch('getUserForm')
+      if(response.status === 200){
+       await this.$store.dispatch('loginUser', {username: this.user.phone, password: this.user.password})
+       await this.$store.dispatch('getUserForm')
+      }
      }
     } catch (e) {
      console.log(e)

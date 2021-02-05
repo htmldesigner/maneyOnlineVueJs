@@ -25,9 +25,8 @@ import './assets/css/form.css';
 import './assets/css/msg.css';
 
 import moment from 'moment'
-
+import 'moment/locale/ru'
 Vue.prototype.moment = moment
-
 
 Vue.config.productionTip = false;
 

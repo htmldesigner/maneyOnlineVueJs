@@ -1,10 +1,10 @@
 <template>
- <dl class="row mt-5">
+ <dl class="row mt-5" v-if="userForm">
   <dt class="col-md-3">ФИО</dt>
-  <dd class="col-md-9">Ибрагим Ибрагимов Ибрагимович</dd>
+  <dd class="col-md-9">{{userForm.Name}} {{userForm.Midlename}} {{userForm.Surname}}</dd>
 
   <dt class="col-md-3">Дата рождения</dt>
-  <dd class="col-md-9">20.20.20</dd>
+  <dd class="col-md-9">{{moment(userForm.LichiyeDannyeDataRoshdeniya, 'YYYYDDMM').format('YYYY-MM-DD')}}</dd>
 
   <dt class="col-md-3">Телефон</dt>
   <dd class="col-md-9">+7 (799) 454-45-45</dd>
@@ -28,7 +28,7 @@
   <dd class="col-md-9">Карагандинская область, Караганда, Г.А степной 2.1.222</dd>
 
   <dt class="col-md-3">ИИН</dt>
-  <dd class="col-md-9">123123213211312</dd>
+  <dd class="col-md-9">{{userForm.LichiyeDannyeIIN}}</dd>
 
   <dt class="col-md-3">№ Удостоверения личности</dt>
   <dd class="col-md-9">123123213211312</dd>
@@ -49,7 +49,12 @@
 
 <script>
  export default {
-  name: "PersonalData"
+  name: "PersonalData",
+  computed: {
+   userForm (){
+    return this.$store.getters.getFormUser
+   }
+  }
  }
 </script>
 

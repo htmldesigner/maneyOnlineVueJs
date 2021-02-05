@@ -1,12 +1,9 @@
 <template>
- <div class="wrap mb-auto">
+ <div class="wrap mb-auto" v-if="getFormUser && checkPaymentMethod !== null">
   <div class="container w-1530">
    <div class="align-items-center justify-content-center flex-column">
     <div class="login-form">
      <div class="form-signin ofzaim-table">
-      <button type="button" class="close d-none" data-dismiss="modal" aria-label="Close">
-       <span aria-hidden="true"></span>
-      </button>
       <ul class="nav nav-tabs main-tabs float-left mb-4" id="myTab" role="tablist">
        <li class="nav-item">
         <a class="nav-link active" id="home-tab" data-toggle="tab" href="#cab-tab1" role="tab" aria-controls="cab-tab1" aria-selected="true">Мои займы</a>
@@ -73,18 +70,29 @@
    Feedback,
    GetLoanModal
   },
-  beforeRouteEnter(to, from, next) {
-   next(vm => {
-    const formStatus = vm.$store.getters.userFormStatus
-    const methodGetMoneyStatus = vm.$store.getters.methodGetMoneyStatus
-    if (!formStatus && !methodGetMoneyStatus) { // Раскоментировать все
-     next('/cabinet');
-    } else {
-     next('/registration')
-    }
-    next()
-   })
-  }
+  computed: {
+   getFormUser() {
+    return this.$store.getters.getFormUser
+   },
+   isUserLoggedIn() {
+    return this.$store.getters.isUserLoggedIn
+   },
+   checkPaymentMethod() {
+    return this.$store.getters.checkPaymentMethod
+   }
+  },
+  // beforeRouteEnter(to, from, next) {
+  //  next(vm => {
+  //   const formStatus =  vm.$store.getters.userFormStatus
+  //   const methodGetMoneyStatus = vm.$store.getters.methodGetMoneyStatus
+  //   if (formStatus && methodGetMoneyStatus) { // Раскоментировать все
+  //    next('/cabinet');
+  //   } else {
+  //    next('/registration')
+  //   }
+  //   next()
+  //  })
+  // }
 
   // beforeRouteEnter(to, from, next) {
   //  next(vm => {

@@ -46,6 +46,31 @@ extend("numeric", {
   message: "Ваш номер телефона"
 });
 
+extend("sum", {
+  ...numeric,
+  message: "Только цифры"
+});
+
+
+
+extend("regex", {
+  async validate(value, {numeric}) {
+    const MOBILEREG = /^((1[3578][0-9])+\d{8})$/;
+    return await validate(value , MOBILEREG.test(value))
+  },
+  message: "1111"
+});
+
+
+
+extend("minSum", {
+  async validate(value, { min }) {
+    return value >= min
+  },
+  params: ['min'],
+  message: 'Минимум {min} тенге'
+});
+
 extend('digits_between', {
   async validate(value, { min, max }) {
     const res = await validate(value, `min:${min}|max:${max}`,)
