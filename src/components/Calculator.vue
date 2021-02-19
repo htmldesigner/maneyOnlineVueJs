@@ -6,7 +6,7 @@
         <div class="block-zaima-title">Сумма займа:</div>
         <div class="custom-range">
           <div class="range mr-2">
-            <input type="range" min="15000" max="300000" step="500" v-model="loan" class="form-range"
+            <input type="range" min="15000" max="300000" step="5000" v-model="loan" class="form-range"
                    id="customRange1"/>
           </div>
           <label class="form-label" for="customRange1">{{loan | numberFilter}} тг</label>

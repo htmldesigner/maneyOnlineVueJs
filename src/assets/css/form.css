@@ -898,6 +898,11 @@ hr.header-line {
 	.content-table.ru-version td:nth-of-type(6):before {
 		content: 'Статус';
 	}
+
+	/*.mx-date-row td, tr{*/
+	/*	display: revert!important;*/
+	/*}*/
+
 }
 
 @media (min-width: 576px) {

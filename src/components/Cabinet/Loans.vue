@@ -5,7 +5,7 @@
    <tr>
     <th scope="col">№ Займа</th>
     <th scope="col">Сумма займа</th>
-    <th scope="col">Задолжность</th>
+    <th scope="col">Задолженность</th>
     <th scope="col">Дата получения</th>
     <th scope="col">Дата погашения</th>
     <th scope="col">Статус</th>
@@ -14,7 +14,7 @@
    </thead>
    <tbody>
    <tr v-for="loan in loanList" :key="loan.id">
-    <td><a class="status-link">{{loan.id}}</a></td>
+    <td><span>{{loan.id}}</span></td>
     <td><span class="status-zaima">{{loan.sum}} тг</span></td>
     <td><span>{{loan.pay_in}} тг</span></td>
     <td><span>{{moment(loan.pay_out_at.date).format('DD.MM.YYYY')}}</span></td>

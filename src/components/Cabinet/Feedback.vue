@@ -11,7 +11,7 @@
     </div>
    </div>
 
-   <div v-for="(message, index) in messages" :key="index">
+   <div v-for="(message, index) in messages" :key="message.id">
 
     <div class="outgoing_msg" v-if="message.sender === 'user'">
      <div class="sent_msg">
@@ -36,7 +36,7 @@
 
   <div class="type_msg">
    <div class="mt-3 pr-5">
-    <input type="text" class="form-control" v-model.trim="message" placeholder="Напишите сообщение">
+    <input type="text" class="form-control" v-model.trim="message" @keyup.enter="onSubmit" placeholder="Напишите сообщение">
     <button class="msg_send_btn" @click="onSubmit"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
    </div>
   </div>

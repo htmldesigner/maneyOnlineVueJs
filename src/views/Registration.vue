@@ -37,8 +37,8 @@
 
      <div class="step d-flex align-items-baseline justify-content-left text-right text-md-left">
       <div class="mr-2 mb-1 w-100">
-       <img v-if="isUserLoggedIn && !userFormStatus" alt="Alt" class="step-thumb" src="@/assets/image/step3-def.svg"/>
-       <img v-else-if="isUserLoggedIn && userFormStatus && !methodGetMoneyStatus" alt="Alt" class="step-thumb"
+       <img v-if="isUserLoggedIn || !userFormStatus" alt="Alt" class="step-thumb" src="@/assets/image/step3-def.svg"/>
+       <img v-else-if="isUserLoggedIn && !userFormStatus && !methodGetMoneyStatus" alt="Alt" class="step-thumb"
             src="@/assets/image/step3-act.svg"/>
        <img v-else-if="isUserLoggedIn && userFormStatus && methodGetMoneyStatus" alt="Alt" class="step-thumb"
             src="@/assets/image/step-success.svg"/>

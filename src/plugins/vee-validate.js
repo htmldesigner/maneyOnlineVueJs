@@ -1,5 +1,5 @@
 import {extend, validate, localize} from "vee-validate";
-import {required, email, min, max, numeric} from "vee-validate/dist/rules";
+import {required, email, min, max, numeric, alpha} from "vee-validate/dist/rules";
 
 extend("required", {
   ...required,
@@ -38,8 +38,47 @@ extend("validateIIN", {
   message: 'ИИН должен содержать {min} символов'
 });
 
+extend("validateMaxIIN", {
+  async validate(value, { max }) {
+    const res = await validate(value, `max:${max}`,)
+    return res.valid;
+  },
+  params: ['max'],
+  message: 'ИИН должен содержать {max} символов'
+});
+
+
+extend("documentID", {
+  async validate(value, { min }) {
+    const res = await validate(value, `min:${min}`,)
+    return res.valid;
+  },
+  params: ['min'],
+  message: '№ удостоверения личности должен содержать {min} символов'
+});
+
+extend("documentIDMax", {
+  async validate(value, { max }) {
+    const res = await validate(value, `max:${max}`,)
+    return res.valid;
+  },
+  params: ['max'],
+  message: '№ удостоверения личности должен содержать {max} символов'
+});
+
+
+extend("numberOnly", {
+  ...numeric,
+  message: "Только цифры"
+});
+
 extend("max", max);
 extend("min", min);
+
+extend("alpha", {
+  ...alpha,
+  message: "Только буквы"
+});
 
 extend("numeric", {
   ...numeric,
@@ -50,8 +89,6 @@ extend("sum", {
   ...numeric,
   message: "Только цифры"
 });
-
-
 
 extend("regex", {
   async validate(value, {numeric}) {

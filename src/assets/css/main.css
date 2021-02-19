@@ -925,6 +925,13 @@ footer .developed a {
 	justify-content: space-between;
 }
 
+.btn-primary.disabled, .btn-primary:disabled {
+	color: #A9B0E2;
+	background-color: #777EB0;
+	border-color: #777EB0;
+}
+
+
 @media (min-width: 576px) {
 	header .container {
 		max-width: 100%;

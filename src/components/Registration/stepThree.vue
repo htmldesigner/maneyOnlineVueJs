@@ -1,5 +1,5 @@
 <template>
- <div class="login-form w-879" v-if="checkPaymentMethod === null">
+ <div class="login-form w-879" v-if="!checkPaymentMethod">
 
   <form class="form-signin">
    <button type="button" class="close d-none" data-dismiss="modal" aria-label="Close">

@@ -43,32 +43,23 @@
   data() {
    return {}
   },
-  // beforeUpdate() {
-  //  if (this.isUserLoggedIn) {
-  //    this.$store.dispatch('getUserForm').then(()=>{
-  //      if (!this.userFormStatus){
-  //        this.$router.push('/registration')
-  //      }
-  //    })
-  //  }
-  // },
+
   async mounted() {
    if (this.isUserLoggedIn) {
     console.log('App comp anketa')
     await this.$store.dispatch('getUserForm')
     await this.$store.dispatch('checkPaymentMethod')
-
     if (this.userFormStatus && this.checkPaymentMethod !== null) {
      this.$router.push('/cabinet')
     } else {
      this.$router.push('/registration')
     }
 
-    this.$store.dispatch('getSupportMessage')
-
-   setInterval(() => {
-    this.$store.dispatch('getSupportMessage')
-   }, 5000 * 4)
+   // this.$store.dispatch('getSupportMessage')
+   //
+   // setInterval(() => {
+   //  this.$store.dispatch('getSupportMessage')
+   // }, 5000 * 4)
 
    }
   }

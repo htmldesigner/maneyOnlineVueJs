@@ -7,40 +7,41 @@
   <dd class="col-md-9">{{moment(userForm.LichiyeDannyeDataRoshdeniya, 'YYYYDDMM').format('YYYY-MM-DD')}}</dd>
 
   <dt class="col-md-3">Телефон</dt>
-  <dd class="col-md-9">+7 (799) 454-45-45</dd>
+  <dd class="col-md-9">----------------</dd>
 
   <dt class="col-md-3">Тип занятости</dt>
-  <dd class="col-md-9">Свое дело</dd>
+  <dd class="col-md-9">{{userForm.LichiyeDannyeObshayaInformatcyaKolonkiLevayaTipZanyatosti}}</dd>
 
   <dt class="col-md-3">Должность</dt>
-  <dd class="col-md-9">Барин</dd>
+  <dd class="col-md-9">{{userForm.RabotaOsnovnoeMestoDolzhnost}}</dd>
 
   <dt class="col-md-3">Ежемесячный доход</dt>
-  <dd class="col-md-9">500 тг</dd>
+  <dd class="col-md-9">{{userForm.DokhodyRaskhodyDokhodyEzhemesyachiyeOsnovMestoRaboty}} тг</dd>
 
   <dt class="col-md-3">Семейная жизнь</dt>
-  <dd class="col-md-9">Женат/Замужем</dd>
-
-  <dt class="col-md-3">Адрес регистрации</dt>
-  <dd class="col-md-9">Карагандинская область, Караганда, Г.А степной 2.1.222</dd>
+  <dd class="col-md-9">{{userForm.LichiyeDannyeObshayaInformatcyaKolonkiLevayaSemeinoePolozhenie}}</dd>
 
   <dt class="col-md-3">Адрес проживания</dt>
-  <dd class="col-md-9">Карагандинская область, Караганда, Г.А степной 2.1.222</dd>
+  <dd class="col-md-9">
+   {{userForm.KontaktnayaInformatsyaAdresPropiskiGorod}},
+   {{userForm.KontaktnayaInformatsyaAdresPropiskiUlitsa}},
+   {{userForm.KontaktnayaInformatsyaAdresPropiskiDom}}
+  </dd>
 
   <dt class="col-md-3">ИИН</dt>
   <dd class="col-md-9">{{userForm.LichiyeDannyeIIN}}</dd>
 
   <dt class="col-md-3">№ Удостоверения личности</dt>
-  <dd class="col-md-9">123123213211312</dd>
+  <dd class="col-md-9">{{userForm.LichiyeDannyeDocumentNomer}}</dd>
 
   <dt class="col-md-3">Место выдачи</dt>
-  <dd class="col-md-9">МВД Казахстана</dd>
+  <dd class="col-md-9">{{userForm.LichiyeDannyeDocumentVidan}}</dd>
 
   <dt class="col-md-3">Дата выдачи</dt>
-  <dd class="col-md-9">27.01.16</dd>
+  <dd class="col-md-9">{{moment(userForm.LichiyeDannyeDocumentSrokS, 'YYYYDDMM').format('YYYY-MM-DD')}}</dd>
 
   <dt class="col-md-3">Срок действия</dt>
-  <dd class="col-md-9">27.01.16</dd>
+  <dd class="col-md-9">{{moment(userForm.LichiyeDannyeDocumentSrokPo, 'YYYYDDMM').format('YYYY-MM-DD')}}</dd>
 
   <dt class="col-md-3"><a class="default-btn" href="#">Редактировать</a></dt>
   <dd class="col-md-9"></dd>

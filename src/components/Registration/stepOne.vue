@@ -8,16 +8,16 @@
 
     <div class="mb-3">
     <label for="inputPhone">Мобильный телефон</label>
-    <ValidationProvider vid="phone" rules="required|numeric|minPhone:10" v-slot="{ errors }">
-     <input
+    <ValidationProvider vid="phone" rules="required" v-slot="{ errors }">
+     <masked-input
       id="inputPhone"
       class="form-control"
       :class="{'is-invalid': errors[0]}"
       type="tel"
       placeholder="+7-(999)-999-9999"
-      required
-      v-model.trim.number="user.phone"
-     >
+      mask="\+\7 (111) 111-11-11"
+      v-model="user.phone"
+     />
      <div v-if="errors[0]" class="invalid-feedback">
       {{ errors[0] }}
      </div>
@@ -26,15 +26,16 @@
 
     <div class="mb-3">
     <label for="inputIIN">ИИН</label>
-    <ValidationProvider vid="iin" rules="required|numeric|validateIIN:12" v-slot="{ errors }">
+    <ValidationProvider vid="iin" rules="numberOnly|required|validateIIN:12|validateMaxIIN:12" v-slot="{ errors }">
      <input
+
       type="text"
       id="inputIIN"
       :class="{'is-invalid': errors[0]}"
       class="form-control"
       placeholder="ИИН"
       required
-      v-model.trim.number="user.iin"
+      v-model.trim="user.iin"
      >
      <div v-if="errors[0]" class="invalid-feedback">
       {{ errors[0] }}
@@ -129,13 +130,15 @@
 <script>
  import {ValidationProvider, ValidationObserver} from "vee-validate";
  import ConfirmPhone from "../ConfirmPhone";
+ import MaskedInput from 'vue-masked-input'
 
  export default {
   name: "stepOne",
   components: {
    ConfirmPhone,
    ValidationProvider,
-   ValidationObserver
+   ValidationObserver,
+   MaskedInput
   },
   data() {
    return {
@@ -151,9 +154,12 @@
   },
   methods: {
    async prepareUserData() {
+    this.user.phone = this.user.phone.replace(/[^\d]+/g, "")
     try {
-     if (this.user.agree) await this.$store.dispatch('sendUserData', this.user)
-     this.$refs.phoneModal.modalInit()
+     if (this.user.agree){
+      await this.$refs.phoneModal.modalInit()
+      await this.$store.dispatch('sendUserData', this.user)
+     }
     } catch (error) {
      return this.$refs.form.setErrors(error.response.data.error)
     }

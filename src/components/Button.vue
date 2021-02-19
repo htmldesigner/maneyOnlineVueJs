@@ -3,6 +3,7 @@
   <button
   v-if="options[status]"
   class="btn"
+  :disabled="!options[status].action"
   :class="options[status].class"
   @click="$emit('actions', {action: options[status].action, loanID: options[status].loanID})"
   >

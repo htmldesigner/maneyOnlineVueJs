@@ -10,15 +10,16 @@
 
        <div class="mb-3">
         <label for="inputPhone">Мобильный телефон</label>
-        <ValidationProvider rules="required|numeric|minPhone:10" v-slot="{ errors }">
-         <input
+        <ValidationProvider rules="required" v-slot="{ errors }">
+         <masked-input
           id="inputPhone"
           class="form-control"
           :class="{'is-invalid': errors[0]}"
           type="tel"
           placeholder="+7-(999)-999-9999"
-          v-model="login.username"
-         >
+          mask="\+\7 (111) 111-11-11"
+          v-model="username"
+         />
          <div v-if="errors[0]" class="invalid-feedback">
           {{ errors[0] }}
          </div>
@@ -34,7 +35,7 @@
           class="form-control"
           placeholder="12345678"
           :class="{'is-invalid': errors[0]}"
-          v-model="login.password"
+          v-model="password"
          >
          <div v-if="errors[0]" class="invalid-feedback">
           {{ errors[0] }}
@@ -59,27 +60,31 @@
 
 <script>
  import {ValidationObserver, ValidationProvider} from 'vee-validate';
+ import MaskedInput from 'vue-masked-input'
 
  export default {
   components: {
    ValidationProvider,
-   ValidationObserver
+   ValidationObserver,
+   MaskedInput
+  },
+  computed: {
+   isUserLoggedIn() {
+    return this.$store.getters.isUserLoggedIn
+   }
   },
   data() {
    return {
-    login: {
-     username: null,
-     password: null
-    }
+    username: null,
+    password: null
    }
   },
   methods: {
    async onSubmit() {
-    try {
-     await this.$store.dispatch('loginUser', this.login)
+    let username = this.username.replace(/[^\d]+/g, "")
+    await this.$store.dispatch('loginUser', {username, password: this.password})
+    if (this.isUserLoggedIn) {
      this.$router.push('/cabinet')
-    } catch (e) {
-     this.$router.push('/login')
     }
    }
   }

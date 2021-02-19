@@ -167,9 +167,10 @@ export default {
    } catch (error) {
     commit('setLoading', false)
     dispatch('logOut')
-    router.push('/login')
-    commit('setError', 'Неверный логин или пароль.')
-    // throw error
+    commit('setError', 'Выполните вход в кабинет')
+    setTimeout(() => {
+     router.push('/login')
+    }, 500)
    }
   },
   /**
@@ -178,11 +179,14 @@ export default {
    * @param payload
    * @return {Promise<void>}
    */
-  async sendUserForm({commit}, payload) {
+  async sendUserForm({commit, dispatch}, payload) {
    try {
     await api.sendUserForm(payload)
+    await dispatch('getUserForm')
    } catch (error) {
     throw error
+    // dispatch('logOut')
+    // router.push('/login')
    }
   },
   /**
@@ -193,7 +197,10 @@ export default {
    */
   async selectPaymentMethod({commit}, payload) {
    try {
-    await api.selectPaymentMethod(payload)
+    const response = await api.selectPaymentMethod(payload)
+    commit('SET_PAYMENT_METHOD', response.data.data.message)
+    router.push('/cabinet')
+    commit('setSuccess', 'Успешно')
    } catch (error) {
     // throw error
    }
@@ -203,7 +210,7 @@ export default {
    * @return {Promise<void>}
    */
   async checkPaymentMethod({commit}, payload) {
-   commit('clearError')
+   // commit('clearError')
    commit('setLoading', true)
    try {
     const response = await api.checkPaymentMethod()
