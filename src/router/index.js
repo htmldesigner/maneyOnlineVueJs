@@ -12,8 +12,8 @@ Vue.use(VueRouter);
 const routes = [
 	{
 		path: '/',
-		name: 'Home',
-		component: Home,
+		name: 'Login',
+		component: Login,
 	},
 	{
 		path: '/registration',
@@ -30,11 +30,6 @@ const routes = [
 		name: 'Cabinet',
 		component: Cabinet,
 		beforeEnter: AuthGuard,
-	},
-	{
-		path: '/login',
-		name: 'Login',
-		component: Login,
 	},
 	{
 		path: '/about',

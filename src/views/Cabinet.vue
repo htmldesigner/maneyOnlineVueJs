@@ -43,11 +43,11 @@
       </ul>
 
       <div class="tab-content" id="myTabContent">
-       <keep-alive>
         <div class="tab-pane" :class="{active: currentComponent}">
-         <component :is="currentComponent"></component>
+          <keep-alive>
+            <component :is="currentComponent"></component>
+          </keep-alive>
         </div>
-       </keep-alive>
       </div>
 
      </div>
@@ -101,12 +101,6 @@
     }
     next()
    })
-  },
-  mounted() {
-   this.$store.dispatch('getSupportMessage')
-   setInterval(() => {
-    this.$store.dispatch('getSupportMessage')
-   }, 5000 * 4)
   }
  };
 </script>

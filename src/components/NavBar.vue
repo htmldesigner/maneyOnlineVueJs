@@ -2,7 +2,7 @@
  <header class="shadow-sm bg-white">
   <div class="container">
    <nav class="navbar navbar-expand-md navbar-white bg-white">
-    <router-link tag="a" class="navbar-brand mr-4" to="/">
+    <a href="http://express-zaim.web-design.kz" class="navbar-brand mr-4">
      <img
       src="@/assets/image/brand.svg"
       class="navbar-brand-img d-none d-sm-block"
@@ -13,7 +13,7 @@
       class="navbar-brand-img d-block d-sm-none"
       alt="..."
      />
-    </router-link>
+    </a>
     <div class="dropdown lang">
      <button
       class="btn dropdown-toggle"
@@ -99,7 +99,7 @@
      <router-link
       v-else
       tag="button"
-      to="/login"
+      to="/"
       class="btn btn-primary my-2 my-sm-0"
      >
       Войти
