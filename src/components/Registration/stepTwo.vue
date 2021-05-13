@@ -11,7 +11,7 @@
 
     <ValidationProvider rules="required" v-slot="{ errors }">
      <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-      <label class="w-30">Полное имя</label>
+      <label class="w-30">Имя</label>
       <input
        class="form-control"
        :class="{'is-invalid': errors[0]}"
@@ -60,7 +60,7 @@
     <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
 
      <label class="w-30">Дата рождения</label>
-      <date-picker v-model="birthday" valueType="format" type="date" format="YYYY-MM-DD" :lang="lang" class="form-control"></date-picker>
+      <date-picker v-model="birthday" valueType="format" type="date" :format="dateFormat" :lang="lang" class="form-control"></date-picker>
     </div>
 
     <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
@@ -153,12 +153,12 @@
 
     <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
      <label class="w-30">Дата выдачи</label>
-      <date-picker v-model="documentSrokS" valueType="format" type="date" format="YYYY-MM-DD" :lang="lang" class="form-control"></date-picker>
+      <date-picker v-model="documentSrokS" valueType="format" type="date" :format="dateFormat" :lang="lang" class="form-control"></date-picker>
     </div>
 
     <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
      <label class="w-30">Срок действия</label>
-      <date-picker v-model="documentSrokPo" value-type="format" type="date" format="YYYY-MM-DD" :lang="lang" class="form-control"></date-picker>
+      <date-picker v-model="documentSrokPo" value-type="format" type="date" :format="dateFormat" :lang="lang" class="form-control"></date-picker>
     </div>
 
     <h1 class="h3 mb-3 mt-5">АДРЕС РЕГИСТРАЦИИ</h1>
@@ -219,6 +219,66 @@
       v-model="getFormUser.KontaktnayaInformatsyaAdresPropiskiKvartira"
       type="text"
       placeholder="Введите номер квартиры">
+    </div>
+
+    <h1 class="h3 mb-3 mt-5">АДРЕС ПРОЖИВАНИЯ</h1>
+
+    <hr class="header-line"/>
+
+    <ValidationProvider rules="required" v-slot="{ errors }">
+     <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
+      <label class="w-30">Населенный пункт</label>
+      <input
+              class="form-control"
+              :class="{'is-invalid': errors[0]}"
+              v-model="getFormUser.KontaktnayaInformatsyaAdresProzhivaniyaGorod"
+              type="text"
+              placeholder="Введите место проживания"
+      >
+      <div v-if="errors[0]" class="invalid-feedback" style="text-align: right;">
+       {{ errors[0] }}
+      </div>
+     </div>
+    </ValidationProvider>
+
+    <ValidationProvider rules="required" v-slot="{ errors }">
+     <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
+      <label class="w-30">Улица</label>
+      <input
+              class="form-control"
+              :class="{'is-invalid': errors[0]}"
+              v-model="getFormUser.KontaktnayaInformatsyaAdresProzhivaniyaUlitsa"
+              type="text"
+              placeholder="Введите улицу"
+      >
+      <div v-if="errors[0]" class="invalid-feedback" style="text-align: right;">
+       {{ errors[0] }}
+      </div>
+     </div>
+    </ValidationProvider>
+
+    <ValidationProvider rules="required" v-slot="{ errors }">
+     <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
+      <label class="w-30">№ Дома</label>
+      <input
+              class="form-control w-50"
+              :class="{'is-invalid': errors[0]}"
+              v-model="getFormUser.KontaktnayaInformatsyaAdresProzhivaniyaDom"
+              type="text"
+              placeholder="Введите номер дома">
+      <div v-if="errors[0]" class="invalid-feedback" style="text-align: right;">
+       {{ errors[0] }}
+      </div>
+     </div>
+    </ValidationProvider>
+
+    <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
+     <label class="w-30">№ Квартиры</label>
+     <input
+             class="form-control w-50"
+             v-model="getFormUser.KontaktnayaInformatsyaAdresProzhivaniyaKvartira"
+             type="text"
+             placeholder="Введите номер квартиры">
     </div>
 
     <h1 class="h3 mb-3 mt-5">МЕСТО РАБОТЫ</h1>
@@ -323,6 +383,15 @@
  import DatePicker from 'vue2-datepicker';
  import 'vue2-datepicker/index.css';
  import 'vue2-datepicker/locale/ru';
+
+ function emptyDate(date) {
+    return date == '01.01.0001' ? '' : date
+ }
+
+ const dateFormatOutRead = 'DD.MM.YYYY'
+ const dateFormatOutToServer = 'YYYYMMDD'
+ const dateFormatIn = 'DDMMYYYY'
+
  export default {
   name: "stepTwo",
   components: {
@@ -338,36 +407,37 @@
 
    birthday: {
     get() {
-     return moment(this.$store.getters.getFormUser.LichiyeDannyeDataRoshdeniya, 'YYYYMMDD').format('YYYY-MM-DD')
+     console.log()
+     return emptyDate(moment(this.$store.getters.getFormUser.LichiyeDannyeDataRoshdeniya, dateFormatOutToServer).format(dateFormatOutRead))
     },
     set(value) {
-     this.$store.getters.getFormUser.LichiyeDannyeDataRoshdeniya = moment(value).format('YYYYMMDD')
+     this.$store.getters.getFormUser.LichiyeDannyeDataRoshdeniya = moment(value, dateFormatIn).format(dateFormatOutToServer)
     }
    },
 
    // Срок с начала действия уд.личности
    documentSrokS: {
     get() {
-     return moment(this.$store.getters.getFormUser.LichiyeDannyeDocumentSrokS, 'YYYYMMDD').format('YYYY-MM-DD')
+     return emptyDate(moment(this.$store.getters.getFormUser.LichiyeDannyeDocumentSrokS, dateFormatOutToServer).format(dateFormatOutRead))
     },
     set(value) {
-      console.log(value)
-     this.$store.getters.getFormUser.LichiyeDannyeDocumentSrokS = moment(value).format('YYYYMMDD')
+     this.$store.getters.getFormUser.LichiyeDannyeDocumentSrokS = moment(value, dateFormatIn).format(dateFormatOutToServer)
     }
    },
 
    // Срок с окончания действия уд.личности
    documentSrokPo: {
     get() {
-     return moment(this.$store.getters.getFormUser.LichiyeDannyeDocumentSrokPo, 'YYYYMMDD').format('YYYY-MM-DD')
+     return emptyDate(moment(this.$store.getters.getFormUser.LichiyeDannyeDocumentSrokPo, dateFormatOutToServer).format(dateFormatOutRead))
     },
     set(value) {
-     this.$store.getters.getFormUser.LichiyeDannyeDocumentSrokPo = moment(value).format('YYYYMMDD')
+     this.$store.getters.getFormUser.LichiyeDannyeDocumentSrokPo = moment(value, dateFormatIn).format(dateFormatOutToServer)
     }
    }
   },
   data() {
    return {
+     dateFormat: dateFormatOutRead,
      lang: {
        formatLocale: {
          firstDayOfWeek: 1,
