@@ -144,6 +144,11 @@ export default {
     userForm.KontaktnayaInformatsyaAdresPropiskiDom = response.data.data.KontaktnayaInformatsyaAdresPropiskiDom
     userForm.KontaktnayaInformatsyaAdresPropiskiKvartira = response.data.data.KontaktnayaInformatsyaAdresPropiskiKvartira
 
+    userForm.KontaktnayaInformatsyaAdresProzhivaniyaGorod = response.data.data.KontaktnayaInformatsyaAdresProzhivaniyaGorod
+    userForm.KontaktnayaInformatsyaAdresProzhivaniyaUlitsa = response.data.data.KontaktnayaInformatsyaAdresProzhivaniyaUlitsa
+    userForm.KontaktnayaInformatsyaAdresProzhivaniyaDom = response.data.data.KontaktnayaInformatsyaAdresProzhivaniyaDom
+    userForm.KontaktnayaInformatsyaAdresPropiskiKvartira = response.data.data.KontaktnayaInformatsyaAdresPropiskiKvartira
+
     userForm.LichiyeDannyeObshayaInformatcyaKolonkiLevayaTipZanyatosti = response.data.data.LichiyeDannyeObshayaInformatcyaKolonkiLevayaTipZanyatosti
     userForm.RabotaOsnovnoeMestoDolzhnost = response.data.data.RabotaOsnovnoeMestoDolzhnost
     userForm.DokhodyRaskhodyDokhodyEzhemesyachiyeOsnovMestoRaboty = response.data.data.DokhodyRaskhodyDokhodyEzhemesyachiyeOsnovMestoRaboty
