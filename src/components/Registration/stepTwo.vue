@@ -407,7 +407,6 @@
 
    birthday: {
     get() {
-     console.log()
      return emptyDate(moment(this.$store.getters.getFormUser.LichiyeDannyeDataRoshdeniya, dateFormatOutToServer).format(dateFormatOutRead))
     },
     set(value) {

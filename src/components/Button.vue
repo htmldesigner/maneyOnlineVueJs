@@ -1,11 +1,9 @@
 <template>
 
   <button
-  v-if="options[status]"
   class="btn"
-  :disabled="!options[status].action"
+  disabled="disabled"
   :class="options[status].class"
-  @click="$emit('actions', {action: options[status].action, loanID: options[status].loanID})"
   >
 {{options[status].value}}
   </button>

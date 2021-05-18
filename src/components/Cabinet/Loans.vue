@@ -30,6 +30,39 @@
       @click="$refs.RepaymentModal.modalInit(loan.id)"
      >Оплатить
      </button>
+
+      <button
+          v-if="loan.status === 3"
+          type="button"
+          class="btn btn-primary pay"
+          @click="actions({loanID: loan.id, action: 'selectPaymentMethod'})"
+      >Выбрать способ выплат
+      </button>
+
+      <button
+          v-if="loan.status === 4"
+          type="button"
+          class="btn btn-primary pay"
+          @click="actions({loanID: loan.id, action: 'waitingSigningContract'})"
+      >Скачать договор
+      </button>
+
+      <button
+          v-if="loan.status === 6"
+          type="button"
+          class="btn btn-primary pay"
+          @click="actions({loanID: loan.id, action: 'confirmSignBySMS'})"
+      >Ожидания подписания договора
+      </button>
+
+      <button
+          v-if="loan.status === 7"
+          type="button"
+          class="btn btn-primary pay"
+          @click="actions({loanID: loan.id, action: 'getMoney'})"
+      >Получить средства
+      </button>
+
     </td>
    </tr>
 

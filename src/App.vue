@@ -52,7 +52,7 @@ export default {
       if (this.userFormStatus && this.checkPaymentMethod !== null) {
         this.$router.push('/cabinet')
       } else {
-        this.$router.push('/registration')
+        this.$router.push('/registration').catch(err => {})
       }
 
       const token = localStorage.getItem('token')
