@@ -5,7 +5,7 @@
   disabled="disabled"
   :class="options[status].class"
   >
-{{options[status].value}}
+  {{options[status].value}}
   </button>
 
 </template>
@@ -60,6 +60,85 @@
  }
 </script>
 
-<style scoped>
+<style>
+.btn-outline-success {
+  background-color: #DAFFD9;
+  background-image: none;
+  border-color: #8BFF89;
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+  color: #4ADB61;
+  min-width: 110px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.btn-outline-danger {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+  color: #DB4A4A;
+  background-color: #FFD9D9;
+  background-image: none;
+  border-color: #FFB0B0;
+  min-width: 110px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.btn-outline-warning {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+  color: #CBB128;
+  background-color: #FFFDC7;
+  background-image: none;
+  border-color: #FFE486;
+  min-width: 110px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.btn-outline-info {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+  color: #253BD8;
+  background-color: #E3E7FF;
+  background-image: none;
+  border-color: #8796FF;
+  min-width: 110px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.btn-outline-done {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+  color: #4ADB61;
+  background-color: #DAFFD9;
+  background-image: none;
+  border-color: #8BFF89;
+  min-width: 110px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
 
 </style>

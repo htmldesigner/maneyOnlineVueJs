@@ -58,17 +58,8 @@
         </ValidationProvider>
 
         <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-
-          <label class="w-30">Дата рождения</label>
-          <date-picker
-              v-model="birthday"
-              valueType="format"
-              type="date"
-              :format="dateFormat"
-              :lang="lang"
-              class="form-control"
-              :editable="false"
-          ></date-picker>
+            <label for="example-datetime-local-input" class="w-30">Дата рождения</label>
+            <input class="form-control" type="date" v-model="birthday" id="example-datetime-local-input">
         </div>
 
         <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
@@ -159,31 +150,18 @@
           </div>
         </ValidationProvider>
 
+
         <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-          <label class="w-30">Дата выдачи</label>
-          <date-picker
-              v-model="documentSrokS"
-              valueType="format" type="date"
-              :format="dateFormat"
-              :lang="lang"
-              class="form-control"
-              :editable="false"
-          >
-          </date-picker>
+          <label for="example-datetime-local-input" class="w-30">Дата выдачи</label>
+          <input class="form-control" type="date" v-model="documentSrokS" id="documentSrokS">
         </div>
 
         <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-          <label class="w-30">Срок действия</label>
-          <date-picker
-              v-model="documentSrokPo"
-              value-type="format"
-              type="date"
-              :format="dateFormat" :lang="lang"
-              class="form-control"
-              :editable="false"
-          >
-          </date-picker>
+          <label for="example-datetime-local-input" class="w-30">Срок действия</label>
+          <input class="form-control" type="date" v-model="documentSrokPo" id="documentSrokPo">
         </div>
+
+
 
         <h1 class="h3 mb-3 mt-5">АДРЕС РЕГИСТРАЦИИ</h1>
 
@@ -412,9 +390,9 @@ function emptyDate(date) {
   return date === '01.01.0001' ? '' : date
 }
 
-const dateFormatOutRead = 'DD.MM.YYYY'
-const dateFormatOutToServer = 'YYYYMMDD'
-const dateFormatIn = 'DDMMYYYY'
+const dateFormatOutRead = 'YYYY-MM-DD'
+const dateFormatOutToServer = 'YYYY-MM-DDTHH:mm'
+const dateFormatIn = 'YYYY-MM-DD'
 
 export default {
   name: "stepTwo",
@@ -472,6 +450,9 @@ export default {
   methods: {
     onSubmit() {
       this.$store.dispatch('sendUserForm', this.getFormUser)
+    },
+    birthdayFunction(ev) {
+      console.log(ev)
     }
   }
 }

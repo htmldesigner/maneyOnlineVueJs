@@ -48,15 +48,15 @@
         </div>
        </ValidationProvider>
 
-       <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-        <label class="w-50 text-left">Способ оплаты займа</label>
-        <select class="custom-select">
-         <option selected>5260-59хх-*****</option>
-         <option value="1">One</option>
-         <option value="2">Two</option>
-         <option value="3">Three</option>
-        </select>
-       </div>
+<!--       <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">-->
+<!--        <label class="w-50 text-left">Способ оплаты займа</label>-->
+<!--        <select class="custom-select">-->
+<!--         <option selected>5260-59хх-*****</option>-->
+<!--         <option value="1">One</option>-->
+<!--         <option value="2">Two</option>-->
+<!--         <option value="3">Three</option>-->
+<!--        </select>-->
+<!--       </div>-->
 
       </div>
       <div class="d-flex flex-column text-center">

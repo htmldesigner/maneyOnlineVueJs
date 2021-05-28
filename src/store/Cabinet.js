@@ -3,7 +3,8 @@ import router from "../router";
 
 export default {
  state: {
-  loanList: null,
+  activeLoan: null,
+  archiveLoan: null,
   paymentMethodList: [{id: 1, value: 'Карта'}, {id: 2, value: 'Банковский перевод'}],
   contract: null,
   requestPayment: null,
@@ -11,7 +12,8 @@ export default {
  },
  mutations: {
   SET_LOAN(state, payload) {
-   state.loanList = payload
+   state.activeLoan = payload.filter(loan => loan.active === true)
+   state.archiveLoan = payload.filter(loan => loan.active === false)
   },
   SET_CONTRACT(state, payload) {
    state.contract = payload
@@ -168,7 +170,8 @@ export default {
   }
  },
  getters: {
-  getLoanList: state => state.loanList,
+  getActiveLoan: state => state.activeLoan,
+  getArchiveLoan: state => state.archiveLoan,
   paymentMethodList: state => state.paymentMethodList,
   getContract: state => state.contract ?? false,
   getRequestPayment: state => state.requestPayment ?? false,
