@@ -9,6 +9,28 @@
 
         <hr class="header-line"/>
 
+
+        <div class="d-flex flex-wrap justify-content-lg-between justify-content-center mb-5" style="width: 100%">
+          <Biometry
+              @onImage="setDocPhoto"
+              @onClear="clearDocPhoto"
+              :title="'Фото удостоварения'"
+              :widthCss="320"
+              :heightCss="240"
+              :corner="{height: '200px', width: '280px', color: '#fff'}"
+          />
+
+          <Biometry v-if="doc_photo"
+                    @onImage="setPhoto"
+                    @onClear="clearPhoto"
+                    :title="'Ваше фото'"
+                    :widthCss="200"
+                    :heightCss="240"
+                    :corner="{height: '220px', width: '180px', color: '#fff'}"
+          />
+        </div>
+
+
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
             <label class="w-30">Имя</label>
@@ -58,8 +80,8 @@
         </ValidationProvider>
 
         <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label for="example-datetime-local-input" class="w-30">Дата рождения</label>
-            <input class="form-control" type="date" v-model="birthday" id="example-datetime-local-input">
+          <label for="example-datetime-local-input" class="w-30">Дата рождения</label>
+          <input class="form-control" type="date" v-model="birthday" id="example-datetime-local-input">
         </div>
 
         <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
@@ -150,7 +172,6 @@
           </div>
         </ValidationProvider>
 
-
         <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
           <label for="example-datetime-local-input" class="w-30">Дата выдачи</label>
           <input class="form-control" type="date" v-model="documentSrokS" id="documentSrokS">
@@ -160,8 +181,6 @@
           <label for="example-datetime-local-input" class="w-30">Срок действия</label>
           <input class="form-control" type="date" v-model="documentSrokPo" id="documentSrokPo">
         </div>
-
-
 
         <h1 class="h3 mb-3 mt-5">АДРЕС РЕГИСТРАЦИИ</h1>
 
@@ -385,6 +404,7 @@ import {ValidationObserver, ValidationProvider} from 'vee-validate';
 import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
 import 'vue2-datepicker/locale/ru';
+import Biometry from "../Biometry";
 
 function emptyDate(date) {
   return date === '01.01.0001' ? '' : date
@@ -397,7 +417,7 @@ const dateFormatIn = 'YYYY-MM-DD'
 export default {
   name: "stepTwo",
   components: {
-    ValidationObserver, ValidationProvider, DatePicker
+    ValidationObserver, ValidationProvider, DatePicker, Biometry
   },
   computed: {
     getFormUser() {
@@ -438,6 +458,8 @@ export default {
   },
   data() {
     return {
+      photo: null,
+      doc_photo: null,
       dateFormat: dateFormatOutRead,
       lang: {
         formatLocale: {
@@ -453,7 +475,25 @@ export default {
     },
     birthdayFunction(ev) {
       console.log(ev)
+    },
+
+    setDocPhoto(el) {
+      this.doc_photo = el
+      this.getFormUser.doc_photo = this.doc_photo
+    },
+
+    setPhoto(el) {
+      this.photo = el
+      this.getFormUser.photo = this.photo
+    },
+
+    clearDocPhoto() {
+      this.doc_photo = null
+    },
+    clearPhoto() {
+      this.photo = null
     }
+
   }
 }
 </script>

@@ -6,6 +6,7 @@ import Registration from '../views/Registration.vue';
 import Login from '../views/Login.vue';
 import Cabinet from "../views/Cabinet";
 import RecoverPassword from "../views/RecoverPassword";
+import About from '../views/About'
 
 Vue.use(VueRouter);
 
