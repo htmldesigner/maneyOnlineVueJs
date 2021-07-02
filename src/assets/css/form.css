@@ -606,6 +606,7 @@ hr.header-line {
 	padding-left: 0;
 	padding-right: 0;
 	margin-right: 2rem;
+	cursor: pointer;
 }
 
 .nav-tabs .nav-link.active {

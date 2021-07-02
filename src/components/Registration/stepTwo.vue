@@ -14,7 +14,7 @@
           <Biometry
               @onImage="setDocPhoto"
               @onClear="clearDocPhoto"
-              :title="'Фото удостоварения'"
+              :title="'Фото удостоверения'"
               :widthCss="320"
               :heightCss="240"
               :corner="{height: '200px', width: '280px', color: '#fff'}"

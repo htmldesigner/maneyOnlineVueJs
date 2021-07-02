@@ -14,21 +14,29 @@
       alt="..."
      />
     </a>
+
+
+
+
     <div class="dropdown lang">
-     <button
-      class="btn dropdown-toggle"
-      type="button"
-      id="dropdownMenu2"
-      data-toggle="dropdown"
-      aria-haspopup="true"
-      aria-expanded="false"
-     >
-      ru
-     </button>
-     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-      <button class="dropdown-item" type="button">en</button>
-     </div>
+      <LocaleChanger/>
+<!--     <button-->
+<!--      class="btn dropdown-toggle"-->
+<!--      type="button"-->
+<!--      id="dropdownMenu2"-->
+<!--      data-toggle="dropdown"-->
+<!--      aria-haspopup="true"-->
+<!--      aria-expanded="false"-->
+<!--     >-->
+<!--      ru-->
+<!--     </button>-->
+<!--     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">-->
+<!--      <button class="dropdown-item" type="button">en</button>-->
+<!--     </div>-->
     </div>
+
+
+
     <button
      class="navbar-toggler collapsed"
      type="button"
@@ -47,13 +55,13 @@
     <div class="navbar-collapse collapse" id="navbarCollapse">
      <ul class="navbar-nav mr-auto ml-0 ml-sm-3">
       <li class="nav-item active">
-       <a class="nav-link" href="/#">Как получить кредит</a>
+       <a class="nav-link" href="https://express-zaim.web-design.kz/how_to_get_credit">Как получить кредит</a>
       </li>
       <li class="nav-item">
-       <a class="nav-link" href="/#">Как оплатить кредит</a>
+       <a class="nav-link" href="https://express-zaim.web-design.kz/how_to_pay">Как оплатить кредит</a>
       </li>
       <li class="nav-item">
-       <a class="nav-link" href="/#">Наши отделения</a>
+       <a class="nav-link" href="https://express-zaim.web-design.kz/#department">Наши отделения</a>
       </li>
      </ul>
      <div class="block-phone text-right">
@@ -102,7 +110,7 @@
       to="/"
       class="btn btn-primary my-2 my-sm-0"
      >
-      Войти
+      {{ $t('buttons.private_office', { value: 'Личный кабинет' }) }}
      </router-link>
     </div>
    </nav>
@@ -112,7 +120,9 @@
 
 <script>
  import {mapActions, mapGetters, mapState, mapMutations} from "vuex";
+ import LocaleChanger from "./LocaleChanger";
  export default {
+   components: {LocaleChanger},
   name: "NavBar",
   computed: {
    isUserLoggedIn(){
@@ -125,7 +135,8 @@
   methods: {
   logOut(){
    this.$store.dispatch('logOut').then(()=>{
-    this.$router.push('/login')
+    // this.$router.push('/login')
+     window.location.href = 'https://express-zaim.web-design.kz/'
    })
 
    }

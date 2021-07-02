@@ -5,7 +5,9 @@
       <p>{{ title }}</p>
 
       <div class="camera" :style="{width: widthCss + 'px'}">
-        <video :style="{width: widthCss + 'px', height: heightCss + 'px'}" :id="`video-${this._uid}`">Камера не доступна.</video>
+        <video :style="{width: widthCss + 'px', height: heightCss + 'px'}" :id="`video-${this._uid}`">Камера не
+          доступна.
+        </video>
 
         <Corner
             :height="corner.height"
@@ -19,8 +21,8 @@
       <canvas class="canvas" :id="`canvas-${this._uid}`"></canvas>
 
       <div class="photo-navigation">
-        <button v-if="front && !image" @click.prevent="front = !front">Фронтальная камера</button>
-        <button v-if="!front && !image" @click.prevent="front = !front">Задняя камера</button>
+        <button v-if="!front && !image" @click.prevent="front = !front">Фронтальная камера</button>
+        <button v-if="front && !image" @click.prevent="front = !front">Задняя камера</button>
         <button v-if="!image" @click.prevent="makePhoto">Фото</button>
         <button v-else @click.prevent="clearPhoto">Очистить</button>
       </div>
@@ -65,17 +67,40 @@ export default {
       output: null,
       image: null,
       photoContainer: null,
-      streaming: false
+      streaming: false,
+      stream: null
+    }
+  },
+
+  watch: {
+    front: {
+      handler() {
+        this.stopStream()
+        this.startup()
+      }
     }
   },
 
   methods: {
+    stopStream() {
+      if (this.stream) {
+        this.stream.getTracks().forEach(function (track) {
+          track.stop()
+        });
+      }
+    },
+
     async startup() {
-      let stream = null;
 
       try {
-        stream = await navigator.mediaDevices.getUserMedia({video: { facingMode: (this.front? "user" : "environment") }, audio: false})
-        this.video.srcObject = stream
+        this.stream = await navigator.mediaDevices.getUserMedia(
+            {
+              video: {
+                facingMode: (this.front ? "user" : "environment")
+              },
+              audio: false
+            })
+        this.video.srcObject = this.stream
         this.video.play()
 
         this.video.addEventListener('canplay', (event) => {
@@ -94,7 +119,10 @@ export default {
       }
     },
 
+
     clearPhoto() {
+      this.stopStream()
+      this.startup()
       const context = this.canvas.getContext('2d');
       this.image = null
       context.clearRect(0, 0, this.width, this.height)
@@ -111,7 +139,7 @@ export default {
         this.canvas.width = this.width;
         this.canvas.height = this.height
 
-        context.drawImage(this.video,  this.widthCss - this.width / 2, 0, this.width, this.height)
+        context.drawImage(this.video, this.widthCss - this.width / 2, 0, this.width, this.height)
         this.image = this.canvas.toDataURL('image/png')
         if (this.image) {
           this.output = document.getElementById(`output-${this._uid}`)
@@ -121,6 +149,7 @@ export default {
           this.output.appendChild(this.photoContainer)
         }
       }
+      this.stopStream()
       this.$emit('onImage', this.image)
     }
   }
@@ -169,5 +198,10 @@ video {
   overflow: hidden;
 
 }
+
+.output img {
+
+}
+
 
 </style>

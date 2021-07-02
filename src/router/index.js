@@ -1,12 +1,11 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import AuthGuard from './Auth-guard'
-import Home from '../views/Home.vue';
 import Registration from '../views/Registration.vue';
 import Login from '../views/Login.vue';
 import Cabinet from "../views/Cabinet";
 import RecoverPassword from "../views/RecoverPassword";
-import About from '../views/About'
+
 
 Vue.use(VueRouter);
 
@@ -40,6 +39,7 @@ const routes = [
 		// which is lazy-loaded when the route is visited.
 		component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
 	},
+	{ path: '*', beforeEnter: () => {window.location.href = 'https://express-zaim.web-design.kz/'}}
 ];
 
 const router = new VueRouter({

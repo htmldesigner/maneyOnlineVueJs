@@ -3,6 +3,7 @@ import App from './App.vue';
 import './registerServiceWorker';
 import router from './router';
 import store from './store';
+import VueI18n from 'vue-i18n'
 
 /**
 	* Plugins
@@ -15,6 +16,26 @@ const token = localStorage.getItem('token')
 if (token) {
 	Vue.prototype.$http.defaults.headers.common['Authorization'] = `Bearer ${token}`
 }
+
+import moment from 'moment'
+import 'moment/locale/ru'
+Vue.prototype.moment = moment
+
+Vue.use(VueI18n)
+import kz from './locales/kz.json'
+import ru from './locales/ru.json'
+
+const messages = {
+	kz,
+	ru
+}
+
+const i18n = new VueI18n({
+	locale: 'ru',
+	messages
+});
+
+
 /**
 	* Style
 	*/
@@ -24,13 +45,12 @@ import './assets/css/main.css';
 import './assets/css/form.css';
 import './assets/css/msg.css';
 
-import moment from 'moment'
-import 'moment/locale/ru'
-Vue.prototype.moment = moment
+
 
 Vue.config.productionTip = false;
 
 new Vue({
+	i18n,
 	$,
 	router,
 	store,
