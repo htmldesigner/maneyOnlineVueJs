@@ -16,8 +16,7 @@
      <button type="button" class="close" data-dismiss="modal" @click="close" aria-label="Close">
       <span aria-hidden="true"></span>
      </button>
-     <h1 class="h3 mb-3 text-center pl-3 pr-3 pl-sm-0 pr-sm-0">На номер {{phone}} выслан SMS с кодом
-      подтверждения.</h1>
+     <h1 class="h3 mb-3 text-center pl-3 pr-3 pl-sm-0 pr-sm-0">{{ $t('message.phone_alert',{value: phone}) }}</h1>
      <hr class="header-line"/>
      <div class="modal-body text-center p-0">
       <div class="input-group mb-5 sms-number">
@@ -36,8 +35,8 @@
       </div>
      </div>
      <div class="d-flex flex-column text-center">
-      <button class="btn btn-lg btn-primary btn-block mb-3" @click.prevent="confirmSMS">Подтвердить</button>
-      <a href="#" @click.prevent="resendCode">Выслать код повторно</a>
+      <button class="btn btn-lg btn-primary btn-block mb-3" @click.prevent="confirmSMS">{{$t('buttons.confirm')}}</button>
+      <a href="#" @click.prevent="resendCode">{{$t('buttons.send_again', {value: 'Выслать код повторно'})}}</a>
      </div>
     </form>
 

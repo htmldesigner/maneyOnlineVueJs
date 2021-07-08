@@ -5,11 +5,12 @@
     <div class="login-form">
      <ValidationObserver ref="form" v-slot="{ valid }">
       <form class="form-signin" @submit.prevent="onSubmit">
-       <h1 class="h3 mb-3">Восстанавление доступа</h1>
+       <h1 class="h3 mb-3">{{$t('forms.recovery_access')}}</h1>
        <hr class="header-line"/>
        <div class="mb-3">
-        <label for="inputPhone">Мобильный телефон</label>
-        <ValidationProvider rules="required|numeric|minPhone:10" v-slot="{ errors }">
+        <label for="inputPhone">{{$t('forms.mobile_phone') }}</label>
+
+        <ValidationProvider rules="required|minPhone:11" v-slot="{ errors }">
          <input
           id="inputPhone"
           class="form-control"
@@ -22,9 +23,10 @@
           {{ errors[0] }}
          </div>
         </ValidationProvider>
+
        </div>
 
-       <button class="btn btn-lg btn-primary btn-block" type="submit" :disabled="!valid">Восстанавить доступ</button>
+       <button class="btn btn-lg btn-primary btn-block" type="submit" :disabled="!valid">{{$t('buttons.restore_access')}}</button>
 
       </form>
      </ValidationObserver>
@@ -43,7 +45,7 @@
 <script>
  import {ValidationObserver, ValidationProvider} from "vee-validate";
  import ConfirmPhone from "../components/ConfirmPhone";
- import router from "../router";
+ import MaskedInput from 'vue-masked-input'
 
  export default {
   name: "RecoverPassword",

@@ -66,7 +66,7 @@ export default {
   width: 2px;
   height: 20px;
   background-color: red;
-  display: inline-block;
+  /*display: inline-block;*/
 }
 
 .top-left, .top-right, .bottom-left, .bottom-right {

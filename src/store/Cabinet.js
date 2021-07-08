@@ -8,7 +8,8 @@ export default {
     paymentMethodList: [{id: 1, value: 'Карта'}, {id: 2, value: 'Банковский перевод'}],
     contract: null,
     requestPayment: null,
-    debt: null
+    debt: null,
+    language: localStorage.getItem('selectedLang') || null
   },
   mutations: {
     SET_LOAN(state, payload) {
@@ -29,9 +30,21 @@ export default {
     },
     SET_DEBT(state, payload) {
       state.debt = payload
+    },
+    SET_LANGUAGE(state, payload){
+      state.language = payload
     }
   },
   actions: {
+    /**
+     * Смена языка
+     * @param commit
+     * @return {Promise<void>}
+     */
+    async localChanger({commit}, payload){
+      commit ('SET_LANGUAGE', payload)
+    },
+
     /**
      * Получить все займы пользователя
      * @param commit
@@ -182,5 +195,6 @@ export default {
     getContract: state => state.contract ?? false,
     getRequestPayment: state => state.requestPayment ?? false,
     getDebt: state => state.debt ?? false,
+    getLanguage: state => state.language
   }
 }

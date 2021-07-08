@@ -245,7 +245,7 @@ dt {
 	font-size: 16px;
 	line-height: 24px;
 	letter-spacing: 0.02em;
-	color: #000000;
+	color: #fff;
 	margin: 0 5px;
 }
 
@@ -260,7 +260,7 @@ dt {
 	border-right: 0.3em solid transparent;
 	border-bottom: 0;
 	border-left: 0.3em solid transparent;
-	color: #000;
+	color: #fff;
 }
 
 /* Custom Login-Form Page style */

@@ -1,9 +1,30 @@
+import Vue from 'vue';
 import {extend, validate, localize} from "vee-validate";
 import {required, email, min, max, numeric, alpha} from "vee-validate/dist/rules";
+import VueI18n from 'vue-i18n'
+Vue.use(VueI18n);
+
+import kz from '../locales/kz.json'
+import ru from '../locales/ru.json'
+
+
+const messages = {
+  kz,
+  ru
+}
+
+const i18n = new VueI18n({
+  locale: localStorage.getItem('selectedLang'),
+  messages: {
+    ru,
+    kz
+  }
+});
+
 
 extend("required", {
   ...required,
-  message: "Обязателно для заполнения"
+  message: i18n.t("validation.required")
 });
 
 extend('password', {
@@ -11,13 +32,13 @@ extend('password', {
   validate(value, { target }) {
     return value === target;
   },
-  message: 'Подтверждение пароля не совпадает'
+  message: i18n.t("validation.confirm_password")
 });
 
 
 extend("email", {
   ...email,
-  message: 'Неправильный формат адреса почты'
+  message: i18n.t("validation.mail")
 });
 
 extend("minPhone", {
@@ -35,7 +56,7 @@ extend("validateIIN", {
     return res.valid;
   },
   params: ['min'],
-  message: 'ИИН должен содержать {min} символов'
+  message: i18n.t("validation.iin_length", {min})
 });
 
 extend("validateMaxIIN", {
@@ -44,7 +65,7 @@ extend("validateMaxIIN", {
     return res.valid;
   },
   params: ['max'],
-  message: 'ИИН должен содержать {max} символов'
+  message: i18n.t("validation.validateMaxIIN", {max})
 });
 
 
@@ -54,7 +75,7 @@ extend("documentID", {
     return res.valid;
   },
   params: ['min'],
-  message: '№ удостоверения личности должен содержать {min} символов'
+  message: i18n.t("validation.id_length", {max: max})
 });
 
 extend("documentIDMax", {
@@ -63,13 +84,13 @@ extend("documentIDMax", {
     return res.valid;
   },
   params: ['max'],
-  message: '№ удостоверения личности должен содержать {max} символов'
+  message: i18n.t("validation.id_length", {max: max})
 });
 
 
 extend("numberOnly", {
   ...numeric,
-  message: "Только цифры"
+  message: i18n.t("validation.only_number")
 });
 
 extend("max", max);
@@ -77,17 +98,17 @@ extend("min", min);
 
 extend("alpha", {
   ...alpha,
-  message: "Только буквы"
+  message: i18n.t("validation.only_chair")
 });
 
 extend("numeric", {
   ...numeric,
-  message: "Ваш номер телефона"
+  message: i18n.t("validation.you_phone")
 });
 
 extend("sum", {
   ...numeric,
-  message: "Только цифры"
+  message: i18n.t("validation.only_number")
 });
 
 extend("regex", {
@@ -105,7 +126,7 @@ extend("minSum", {
     return value >= min
   },
   params: ['min'],
-  message: 'Минимум {min} тенге'
+  message: i18n.t("validation.min_tenge", {min: min})
 });
 
 extend('digits_between', {
@@ -114,5 +135,5 @@ extend('digits_between', {
     return res.valid;
   },
   params: ['min', 'max'],
-  message: 'Пароль от {min} до {max} символов'
+  message: i18n.t("validation.password_length", {min: min, max: max})
 });

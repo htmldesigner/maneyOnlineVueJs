@@ -19,6 +19,8 @@ export default {
   methods: {
     setLang(val){
       localStorage.setItem('selectedLang', val.target.value)
+      this.$store.dispatch('localChanger', val.target.value)
+      location.reload();
     }
   },
   mounted() {
@@ -30,3 +32,13 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.locale-changer select {
+  border: none!important;
+  border-radius: 3px;
+  width: 50px;
+  height: 30px;
+  padding-left: 8px;
+}
+</style>

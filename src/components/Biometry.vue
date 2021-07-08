@@ -20,11 +20,11 @@
 
       <canvas class="canvas" :id="`canvas-${this._uid}`"></canvas>
 
-      <div class="photo-navigation">
-        <button v-if="!front && !image" @click.prevent="front = !front">Фронтальная камера</button>
-        <button v-if="front && !image" @click.prevent="front = !front">Задняя камера</button>
-        <button v-if="!image" @click.prevent="makePhoto">Фото</button>
-        <button v-else @click.prevent="clearPhoto">Очистить</button>
+      <div class="photo-navigation d-flex justify-content-around" style="min-width: 320px">
+        <button class="btn btn-lg btn-primary" v-if="!front && !image" @click.prevent="front = !front">Фронтальная камера</button>
+        <button class="btn btn-lg btn-primary" v-if="front && !image" @click.prevent="front = !front">Задняя камера</button>
+        <button class="btn btn-lg btn-primary" v-if="!image" @click.prevent="makePhoto">Фото</button>
+        <button class="btn btn-lg btn-primary" v-else @click.prevent="clearPhoto">Очистить</button>
       </div>
 
     </div>
@@ -152,13 +152,14 @@ export default {
       this.stopStream()
       this.$emit('onImage', this.image)
     }
-  }
-  ,
+  },
+
   mounted() {
     this.video = document.getElementById(`video-${this._uid}`)
     this.canvas = document.getElementById(`canvas-${this._uid}`)
     this.startup()
   }
+
 }
 </script>
 

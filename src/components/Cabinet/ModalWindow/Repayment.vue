@@ -11,28 +11,27 @@
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
        <span aria-hidden="true"></span>
       </button>
-      <h1 class="h3 mb-3 text-center pl-3 pr-3 pl-sm-0 pr-sm-0">Оплата займа</h1>
+      <h1 class="h3 mb-3 text-center pl-3 pr-3 pl-sm-0 pr-sm-0">{{$t('cabinet.loan_payment')}}</h1>
       <hr class="header-line"/>
       <div class="modal-body text-center p-0">
 
        <div class="input-group mb-4 d-flex justify-content-between">
 
         <div class="d-flex flex-column text-left">
-         <label class="sub-label">Долг составляет</label>
+         <label class="sub-label">{{$t('cabinet.debt_is')}}</label>
          <span class="sub-label-text" v-if="debt">{{debt}} тг</span>
-         <span v-else>Ожидайте...</span>
+         <span v-else>{{$t('message.wait')}}</span>
         </div>
 
         <div class="d-flex flex-column text-left">
-         <label class="sub-label">Минимальная сумма</label>
+         <label class="sub-label">{{$t('cabinet.min_amount')}}</label>
          <span class="sub-label-text">450 тг</span>
         </div>
        </div>
 
        <ValidationProvider rules="required|sum|minSum:450" v-slot="{ errors }">
         <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-         <label class="w-50 text-left">Сумма оплаты займа</label>
-
+         <label class="w-50 text-left">{{$t('cabinet.loan_payment')}}</label>
          <input
           id="inputPhone"
           class="form-control"
@@ -66,7 +65,7 @@
         @click.prevent="rePayment"
         :disabled="!valid"
        >
-        Подтвердить
+        {{$t('buttons.confirm')}}
        </button>
       </div>
 
@@ -114,6 +113,8 @@
     this.loanID = await loanID
     await this.$store.dispatch('debt', loanID)
    },
+
+
    modalHide() {
     $('#rePayment').modal('hide');
    }

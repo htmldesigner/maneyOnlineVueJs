@@ -63,6 +63,15 @@ header {
 	background: #ffffff;
 }
 
+.desktop-logo {
+	height: 37px;
+}
+
+.footer-menu-item {
+	margin-right: 20px;
+}
+
+
 .shadow-sm {
 	box-shadow: 0px 4px 30px -12px rgba(0, 0, 0, 0.25);
 }
@@ -156,7 +165,8 @@ section.top-slider > div > div {
 	font-size: 16px;
 	line-height: 24px;
 	letter-spacing: 0.02em;
-	color: #080a33;
+	/*color: #080a33;*/
+	color: #fff;
 	border-bottom-style: solid;
 	border-bottom-width: 1px;
 	border-bottom-color: rgba(0, 0, 0, 0.12);
@@ -318,7 +328,17 @@ section.top-slider > div > div {
 	font-size: 16px;
 	line-height: 24px;
 	letter-spacing: 0.02em;
-	color: #1771e6;
+	/*color: #1771e6;*/
+	color: #fff;
+}
+
+.btn-orange {
+	background-color: #FF9966!important;
+	color: #fff!important;
+}
+
+.btn-orange:hover {
+	background-color: #ecbda0 !important;
 }
 
 .block-phone .phone-text {
@@ -845,14 +865,18 @@ footer {
 }
 
 footer .row {
-	display: flex;
+	/*display: flex;*/
 	align-items: center;
 	justify-content: space-between;
-	flex-direction: column;
+	/*flex-direction: column;*/
 }
 
 .bg-gray-200 {
 	background: #f8f8fa;
+}
+
+.bg-blue {
+	background-color: #003399;
 }
 
 footer .copyright {
@@ -957,7 +981,7 @@ footer .developed a {
 	}
 	.navbar {
 		padding: 19px 0;
-		height: 88px;
+		height: 71px;
 	}
 	.navbar-expand-md .navbar-nav .nav-link {
 		padding-right: 1rem;
@@ -966,7 +990,7 @@ footer .developed a {
 	}
 	.lang {
 		position: absolute;
-		right: 190px;
+		right: 180px;
 	}
 	.bottom-block {
 		display: flex;

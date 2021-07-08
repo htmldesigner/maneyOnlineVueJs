@@ -6,7 +6,7 @@
         <div class="incoming_msg_img mr-3"><img src="@/assets/image/msg-icon.svg" alt="sunil"></div>
         <div class="received_msg">
           <div class="received_withd_msg">
-            <p class="p-0">Тех.поддержка</p>
+            <p class="p-0">{{$t('cabinet.support')}}</p>
           </div>
         </div>
       </div>
@@ -24,7 +24,7 @@
           <div class="incoming_msg_img mr-3"><img src="@/assets/image/msg-icon.svg" alt="sunil"></div>
           <div class="received_msg">
             <div class="received_withd_msg">
-              <span class="time_date">Тех.поддержка {{ moment(message.created_at).format('HH:mm DD MMM YYYY') }}</span>
+              <span class="time_date">{{$t('cabinet.support')}} {{ moment(message.created_at).format('HH:mm DD MMM YYYY') }}</span>
               <p>{{ message.message }}</p>
             </div>
           </div>

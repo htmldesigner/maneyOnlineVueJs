@@ -14,7 +14,7 @@
      <div class="modal-body text-center p-0">
 
       <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-       <label class="w-50 text-left">Способ выплаты займа</label>
+       <label class="w-50 text-left">{{$t('cabinet.repayment_method')}}</label>
        <select class="custom-select" v-model="selectedMethod">
         <option v-for="(method, idx) in paymentMethods" :key="idx" :value="method.id">{{method.value}}</option>
        </select>
@@ -23,7 +23,7 @@
      </div>
 
      <div class="d-flex flex-column text-center">
-      <button class="btn btn-lg btn-primary btn-block" @click.prevent="onSubmit">Получить средства</button>
+      <button class="btn btn-lg btn-primary btn-block" @click.prevent="onSubmit">{{$t('cabinet.get_money')}}</button>
      </div>
 
     </form>

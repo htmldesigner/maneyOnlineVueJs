@@ -1,11 +1,11 @@
 <template>
- <header class="shadow-sm bg-white">
+ <header class="shadow-sm bg-blue">
   <div class="container">
-   <nav class="navbar navbar-expand-md navbar-white bg-white">
+   <nav class="navbar navbar-expand-md navbar-white">
     <a href="http://express-zaim.web-design.kz" class="navbar-brand mr-4">
      <img
       src="@/assets/image/brand.svg"
-      class="navbar-brand-img d-none d-sm-block"
+      class="navbar-brand-img d-none d-sm-block desktop-logo"
       alt="..."
      />
      <img
@@ -20,19 +20,7 @@
 
     <div class="dropdown lang">
       <LocaleChanger/>
-<!--     <button-->
-<!--      class="btn dropdown-toggle"-->
-<!--      type="button"-->
-<!--      id="dropdownMenu2"-->
-<!--      data-toggle="dropdown"-->
-<!--      aria-haspopup="true"-->
-<!--      aria-expanded="false"-->
-<!--     >-->
-<!--      ru-->
-<!--     </button>-->
-<!--     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">-->
-<!--      <button class="dropdown-item" type="button">en</button>-->
-<!--     </div>-->
+
     </div>
 
 
@@ -55,20 +43,20 @@
     <div class="navbar-collapse collapse" id="navbarCollapse">
      <ul class="navbar-nav mr-auto ml-0 ml-sm-3">
       <li class="nav-item active">
-       <a class="nav-link" href="https://express-zaim.web-design.kz/how_to_get_credit">Как получить кредит</a>
+       <a class="nav-link" href="https://express-zaim.web-design.kz/how_to_get_credit">{{$t('links.how_to_get_credit', { value: 'Как получить кредит'})}}</a>
       </li>
       <li class="nav-item">
-       <a class="nav-link" href="https://express-zaim.web-design.kz/how_to_pay">Как оплатить кредит</a>
+       <a class="nav-link" href="https://express-zaim.web-design.kz/how_to_pay">{{$t('links.how_to_pay', { value: 'Как оплатить кредит'})}}</a>
       </li>
       <li class="nav-item">
-       <a class="nav-link" href="https://express-zaim.web-design.kz/#department">Наши отделения</a>
+       <a class="nav-link" href="https://express-zaim.web-design.kz/#department">{{$t('links.department', { value: 'Наши отделения'})}}</a>
       </li>
      </ul>
      <div class="block-phone text-right">
       <div class="phone-number text-right">
        <a href="tel:87711099990">87711099990</a>
       </div>
-      <div class="phone-text">9:00 до 19:00 без выходных</div>
+      <div class="phone-text">{{$t('period', { value: '9:00 до 19:00 без выходных'})}}</div>
      </div>
 
      <ul v-if="this.isUserLoggedIn" class="nav navbar-nav navbar-right login-user">
@@ -108,7 +96,7 @@
       v-else
       tag="button"
       to="/"
-      class="btn btn-primary my-2 my-sm-0"
+      class="btn btn-primary my-2 my-sm-0 btn-orange"
      >
       {{ $t('buttons.private_office', { value: 'Личный кабинет' }) }}
      </router-link>

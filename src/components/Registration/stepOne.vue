@@ -3,11 +3,11 @@
     <ValidationObserver ref="form" v-slot="{ valid }">
       <form class="form-signin">
 
-        <h1 class="h3 mb-3">РЕГИСТРАЦИЯ</h1>
+        <h1 class="h3 mb-3">{{$t('forms.registration').toUpperCase()}}</h1>
         <hr class="header-line"/>
 
         <div class="mb-3">
-          <label for="inputPhone">Мобильный телефон</label>
+          <label for="inputPhone">{{$t('forms.mobile_phone')}}</label>
           <ValidationProvider vid="phone" rules="required" v-slot="{ errors }">
             <masked-input
                 id="inputPhone"
@@ -25,11 +25,10 @@
         </div>
 
         <div class="mb-3">
-          <label for="inputIIN">ИИН</label>
+          <label for="inputIIN">{{$t('forms.IIN')}}</label>
           <ValidationProvider vid="iin" rules="numberOnly|required|validateIIN:12|validateMaxIIN:12"
                               v-slot="{ errors }">
             <input
-
                 type="text"
                 id="inputIIN"
                 :class="{'is-invalid': errors[0]}"
@@ -45,7 +44,7 @@
         </div>
 
         <div class="mb-3">
-          <label for="inputEmail">Электронная почта</label>
+          <label for="inputEmail">{{$t('forms.mail')}}</label>
           <ValidationProvider vid="email" rules="required|email" v-slot="{ errors }">
             <input
                 id="inputEmail"
@@ -61,7 +60,7 @@
         </div>
 
         <div class="mb-3">
-          <label for="inputPassword">Пароль</label>
+          <label for="inputPassword">{{$t('forms.password')}}</label>
           <ValidationProvider name="confirm" rules="required|digits_between:8,25" v-slot="{ errors }">
             <input
                 type="password"
@@ -78,7 +77,7 @@
         </div>
 
         <div class="mb-3">
-          <label for="confirmPassword">Подтвердить пароль</label>
+          <label for="confirmPassword">{{ $t('forms.confirm_password') }}</label>
           <ValidationProvider rules="required|password:@confirm" v-slot="{ errors }">
             <input
                 type="password"
@@ -102,7 +101,7 @@
                   type="checkbox"
                   v-model="user.agree"
               >
-              Я соглашаюсь с условиями
+              {{ $t('forms.agree')}}
             </label>
           </ValidationProvider>
         </div>
@@ -113,8 +112,8 @@
     </ValidationObserver>
 
     <div class="formFooter d-flex flex-column">
-      <label class="text-normal mb-0">Уже проходили регистрацию на сайте?</label>
-      <router-link to="/cabinet">Зайдите в личный кабинет</router-link>
+      <label class="text-normal mb-0">{{ $t('forms.already_registration') }}</label>
+      <router-link to="/">{{ $t('forms.enter_to_cabinet') }}</router-link>
     </div>
 
     <ConfirmPhone
@@ -170,7 +169,7 @@ export default {
           this.user['code'] = smsCode
           const response = await this.$store.dispatch('confirmUserDate', this.user)
           await this.$refs.phoneModal.modalHide()
-          await this.$store.dispatch('setSuccess', 'Телефон подтвержден')
+          await this.$store.dispatch('setSuccess', this.$t('message.phone_confirm', {value: 'Телефон подтвержден'}))
           if (response.status === 200) {
             await this.$store.dispatch('loginUser', {username: this.user.phone, password: this.user.password})
             await this.$store.dispatch('getUserForm')

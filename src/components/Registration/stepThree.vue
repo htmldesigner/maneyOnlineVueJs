@@ -5,7 +5,7 @@
    <button type="button" class="close d-none" data-dismiss="modal" aria-label="Close">
     <span aria-hidden="true"></span>
    </button>
-   <h1 class="h3 mb-3">ВЫБЕРИТЕ СПОСОБ ПОЛУЧЕНИЯ СРЕДСТВ</h1>
+   <h1 class="h3 mb-3">{{$t('forms.choose_way')}}</h1>
    <hr class="header-line"/>
    <div class="input-group mb-4 d-flex align-items-center justify-content-between sposob">
 
@@ -13,14 +13,14 @@
          class="col input-group-text active form-control d-flex flex-col align-items-center mr-md-4"
     >
      <img alt="" class="step-thumb" src="@/assets/image/step3-img1.svg">
-     <label class="w-30 mb-0 ml-2">На банковскую карту</label>
+     <label class="w-30 mb-0 ml-2">{{$t('forms.to_bank_card')}}</label>
     </div>
 
     <div @click="onOffice"
          class="col input-group-text form-control d-flex flex-col align-items-center ml-md-4"
     >
      <img alt="" class="step-thumb" src="@/assets/image/step3-img3.svg">
-     <label class="w-30 mb-0 ml-2">Наличными в отделении</label>
+     <label class="w-30 mb-0 ml-2">{{$t('forms.cash_branch')}}</label>
     </div>
 
    </div>

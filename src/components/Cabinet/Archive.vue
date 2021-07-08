@@ -3,14 +3,14 @@
     <table class="table table-striped content-table ru-version border-top-none mt-5">
       <thead>
       <tr>
-        <th scope="col">№ Займа</th>
-        <th scope="col">Сумма займа</th>
-        <th scope="col">Задолженность</th>
-        <th scope="col">Дата получения</th>
-        <th scope="col">Дата погашения</th>
-        <th scope="col">Статус</th>
+        <th scope="col">{{$t('cabinet.loan_No')}}</th>
+        <th scope="col">{{$t('cabinet.loan_amount')}}</th>
+        <th scope="col">{{$t('cabinet.debt')}}</th>
+        <th scope="col">{{$t('cabinet.date_receiving')}}</th>
+        <th scope="col">{{$t('cabinet.maturity_date')}}</th>
+        <th scope="col">{{$t('cabinet.status')}}</th>
         <th scope="col">&nbsp;</th>
-        <th scope="col">Договор</th>
+        <th scope="col">{{$t('cabinet.contract')}}</th>
       </tr>
       </thead>
       <tbody>
@@ -29,7 +29,8 @@
                       type="button"
                       class="btn btn-primary"
                       @click="$refs.RepaymentModal.modalInit(loan.id)"
-                  >Оплатить
+                  >
+                    {{$t('buttons.pay')}}
                   </button>
 
                   <button
@@ -37,7 +38,7 @@
                       type="button"
                       class="btn btn-primary"
                       @click="actions({loanID: loan.id, action: 'selectPaymentMethod'})"
-                  >Выбрать способ выплат
+                  >{{$t('buttons.payment_method')}}
                   </button>
 
                   <button
@@ -45,7 +46,7 @@
                       type="button"
                       class="btn btn-primary"
                       @click="actions({loanID: loan.id, action: 'waitingSigningContract'})"
-                  >Скачать договор
+                  >{{$t('buttons.download_contract')}}
                   </button>
 
                   <button
@@ -53,7 +54,7 @@
                       type="button"
                       class="btn btn-primary"
                       @click="actions({loanID: loan.id, action: 'confirmSignBySMS'})"
-                  >Отправить SMS подтверждения
+                  >{{$t('buttons.send_sms')}}
                   </button>
 
                   <button
@@ -61,7 +62,7 @@
                       type="button"
                       class="btn btn-primary"
                       @click="actions({loanID: loan.id, action: 'signBySMS'})"
-                  >Подписать договор
+                  >{{$t('buttons.sign_contract')}}
                   </button>
 
                   <button
@@ -69,15 +70,15 @@
                       type="button"
                       class="btn btn-primary"
                       @click="actions({loanID: loan.id, action: 'getMoney'})"
-                  >Получить средства
+                  >{{$t('buttons.get_money')}}
                   </button>
 
                 </td>
         <td v-if="loan.contract_link">
           <a :href="loan.contract_link" target="_blank">
             <img style="position: relative; top: 4px; width: 36px" src="@/assets/pdf_icon.svg" alt="alt"
-                 title="Скачать договор">
-            <span>Скачать договор</span>
+                 :title=`${$t('buttons.download_contract')}`>
+            <span>{{$t('buttons.download_contract')}}</span>
           </a>
         </td>
         <td v-else>
@@ -87,22 +88,22 @@
       </tbody>
     </table>
 
-    <nav aria-label="Page navigation example">
-      <ul class="pagination justify-content-end mt-3">
-        <li class="page-item disabled">
-          <a class="page-link arrow-left" href="#" tabindex="-1"></a>
-        </li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link arrow-right mr-0" href="#"></a>
-        </li>
-      </ul>
-    </nav>
+<!--    <nav aria-label="Page navigation example">-->
+<!--      <ul class="pagination justify-content-end mt-3">-->
+<!--        <li class="page-item disabled">-->
+<!--          <a class="page-link arrow-left" href="#" tabindex="-1"></a>-->
+<!--        </li>-->
+<!--        <li class="page-item active"><a class="page-link" href="#">1</a></li>-->
+<!--        <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+<!--        <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+<!--        <li class="page-item"><a class="page-link arrow-right mr-0" href="#"></a>-->
+<!--        </li>-->
+<!--      </ul>-->
+<!--    </nav>-->
   </div>
 
   <div v-else class="form-control d-flex flex-column align-items-center border-0 pt-5 pb-5 empty">
-    <label class="">У вас нет погашенных займов</label>
+    <label class="">{{$t('buttons.no_repaid_loans')}}</label>
     <img alt="" class="step-thumb" src="@/assets/image/empty.svg">
   </div>
 </template>

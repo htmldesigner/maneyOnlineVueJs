@@ -11,7 +11,7 @@
                 <a class="nav-link"
                    :class="{active: currentComponent === 'Loans'}"
                    @click="currentComponent = 'Loans'"
-                >Активный займ</a>
+                >{{$t('cabinet.active_loan')}}</a>
               </li>
 
 
@@ -19,7 +19,7 @@
                 <a class="nav-link"
                    :class="{active: currentComponent === 'Archive'}"
                    @click="currentComponent = 'Archive'"
-                >Архив займов</a>
+                >{{$t('cabinet.archive_loan')}}</a>
               </li>
 
 
@@ -27,21 +27,21 @@
                 <a class="nav-link"
                    :class="{active: currentComponent === 'CardsAccounts'}"
                    @click="currentComponent = 'CardsAccounts'"
-                >Карты и счета</a>
+                >{{$t('cabinet.cards')}}</a>
               </li>
 
               <li class="nav-item">
                 <a class="nav-link"
                    :class="{active: currentComponent === 'PersonalData'}"
                    @click="currentComponent = 'PersonalData'"
-                >Личные данные</a>
+                >{{$t('cabinet.cards')}}</a>
               </li>
 
               <li class="nav-item">
                 <a class="nav-link"
                    :class="{active: currentComponent === 'Feedback'}"
                    @click="currentComponent = 'Feedback'"
-                >Обратная связь</a>
+                >{{$t('cabinet.callback')}}</a>
               </li>
 
             </ul>
@@ -51,8 +51,7 @@
                 <button :disabled="activeLoan"
                         class="btn btn-lg btn-primary btn-block"
                         @click="$refs.forLoanModal.modalInit()"
-                >Оформить займ
-                </button>
+                >{{$t('buttons.apply_loan')}}</button>
               </li>
             </ul>
 
@@ -100,7 +99,6 @@ export default {
     checkPaymentMethod() {
       return this.$store.getters.checkPaymentMethod
     },
-
     activeLoan() {
       if (this.$store.getters.getActiveLoan?.length) {
         return true
@@ -108,7 +106,6 @@ export default {
         return false
       }
     }
-
   },
   data() {
     return {

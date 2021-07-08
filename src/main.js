@@ -4,12 +4,16 @@ import './registerServiceWorker';
 import router from './router';
 import store from './store';
 import VueI18n from 'vue-i18n'
+import VeeValidate from 'vee-validate'
 
 /**
 	* Plugins
 	*/
 import $ from 'jquery'
+
 import './plugins/vee-validate'
+
+
 import axios from "axios";
 Vue.prototype.$http = axios
 const token = localStorage.getItem('token')

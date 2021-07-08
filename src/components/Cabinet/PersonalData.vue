@@ -1,62 +1,62 @@
 <template>
- <dl class="row mt-5" v-if="userForm">
-  <dt class="col-md-3">ФИО</dt>
-  <dd class="col-md-9">{{userForm.Name}} {{userForm.Midlename}} {{userForm.Surname}}</dd>
+  <dl class="row mt-5" v-if="userForm">
+    <dt class="col-md-3">{{ $t('personal.fio') }}</dt>
+    <dd class="col-md-9">{{ userForm.Name }} {{ userForm.Midlename }} {{ userForm.Surname }}</dd>
 
-  <dt class="col-md-3">Дата рождения</dt>
-  <dd class="col-md-9">{{moment(userForm.LichiyeDannyeDataRoshdeniya, 'YYYYDDMM').format('YYYY-MM-DD')}}</dd>
+    <dt class="col-md-3">{{ $t('personal.birthday') }}</dt>
+    <dd class="col-md-9">{{ moment(userForm.LichiyeDannyeDataRoshdeniya, 'YYYYDDMM').format('YYYY-MM-DD') }}</dd>
 
-  <dt class="col-md-3">Телефон</dt>
-  <dd class="col-md-9">----------------</dd>
+    <dt class="col-md-3">{{ $t('personal.phone') }}Телефон</dt>
+    <dd class="col-md-9">----------------</dd>
 
-  <dt class="col-md-3">Тип занятости</dt>
-  <dd class="col-md-9">{{userForm.LichiyeDannyeObshayaInformatcyaKolonkiLevayaTipZanyatosti}}</dd>
+    <dt class="col-md-3">{{ $t('personal.busyness') }}</dt>
+    <dd class="col-md-9">{{ userForm.LichiyeDannyeObshayaInformatcyaKolonkiLevayaTipZanyatosti }}</dd>
 
-  <dt class="col-md-3">Должность</dt>
-  <dd class="col-md-9">{{userForm.RabotaOsnovnoeMestoDolzhnost}}</dd>
+    <dt class="col-md-3">{{ $t('personal.position') }}</dt>
+    <dd class="col-md-9">{{ userForm.RabotaOsnovnoeMestoDolzhnost }}</dd>
 
-  <dt class="col-md-3">Ежемесячный доход</dt>
-  <dd class="col-md-9">{{userForm.DokhodyRaskhodyDokhodyEzhemesyachiyeOsnovMestoRaboty}} тг</dd>
+    <dt class="col-md-3">{{ $t('personal.earnings') }}</dt>
+    <dd class="col-md-9">{{ userForm.DokhodyRaskhodyDokhodyEzhemesyachiyeOsnovMestoRaboty }} тг</dd>
 
-  <dt class="col-md-3">Семейная жизнь</dt>
-  <dd class="col-md-9">{{userForm.LichiyeDannyeObshayaInformatcyaKolonkiLevayaSemeinoePolozhenie}}</dd>
+    <dt class="col-md-3">{{ $t('personal.family') }}</dt>
+    <dd class="col-md-9">{{ userForm.LichiyeDannyeObshayaInformatcyaKolonkiLevayaSemeinoePolozhenie }}</dd>
 
-  <dt class="col-md-3">Адрес проживания</dt>
-  <dd class="col-md-9">
-   {{userForm.KontaktnayaInformatsyaAdresPropiskiGorod}},
-   {{userForm.KontaktnayaInformatsyaAdresPropiskiUlitsa}},
-   {{userForm.KontaktnayaInformatsyaAdresPropiskiDom}}
-  </dd>
+    <dt class="col-md-3">{{ $t('personal.residence_address') }}Адрес проживания</dt>
+    <dd class="col-md-9">
+      {{ userForm.KontaktnayaInformatsyaAdresPropiskiGorod }},
+      {{ userForm.KontaktnayaInformatsyaAdresPropiskiUlitsa }},
+      {{ userForm.KontaktnayaInformatsyaAdresPropiskiDom }}
+    </dd>
 
-  <dt class="col-md-3">ИИН</dt>
-  <dd class="col-md-9">{{userForm.LichiyeDannyeIIN}}</dd>
+    <dt class="col-md-3">{{ $t('personal.iin') }}</dt>
+    <dd class="col-md-9">{{ userForm.LichiyeDannyeIIN }}</dd>
 
-  <dt class="col-md-3">№ Удостоверения личности</dt>
-  <dd class="col-md-9">{{userForm.LichiyeDannyeDocumentNomer}}</dd>
+    <dt class="col-md-3">{{ $t('personal.number_id') }}</dt>
+    <dd class="col-md-9">{{ userForm.LichiyeDannyeDocumentNomer }}</dd>
 
-  <dt class="col-md-3">Место выдачи</dt>
-  <dd class="col-md-9">{{userForm.LichiyeDannyeDocumentVidan}}</dd>
+    <dt class="col-md-3">{{ $t('personal.place_of_issue') }}</dt>
+    <dd class="col-md-9">{{ userForm.LichiyeDannyeDocumentVidan }}</dd>
 
-  <dt class="col-md-3">Дата выдачи</dt>
-  <dd class="col-md-9">{{moment(userForm.LichiyeDannyeDocumentSrokS, 'YYYYDDMM').format('YYYY-MM-DD')}}</dd>
+    <dt class="col-md-3">{{ $t('personal.date_of_issue') }}</dt>
+    <dd class="col-md-9">{{ moment(userForm.LichiyeDannyeDocumentSrokS, 'YYYYDDMM').format('YYYY-MM-DD') }}</dd>
 
-  <dt class="col-md-3">Срок действия</dt>
-  <dd class="col-md-9">{{moment(userForm.LichiyeDannyeDocumentSrokPo, 'YYYYDDMM').format('YYYY-MM-DD')}}</dd>
+    <dt class="col-md-3">{{ $t('personal.validity') }}</dt>
+    <dd class="col-md-9">{{ moment(userForm.LichiyeDannyeDocumentSrokPo, 'YYYYDDMM').format('YYYY-MM-DD') }}</dd>
 
-  <dt class="col-md-3"><a class="default-btn" href="#">Редактировать</a></dt>
-  <dd class="col-md-9"></dd>
- </dl>
+    <dt class="col-md-3"><a class="default-btn" href="#">{{ $t('buttons.edit') }}</a></dt>
+    <dd class="col-md-9"></dd>
+  </dl>
 </template>
 
 <script>
- export default {
+export default {
   name: "PersonalData",
   computed: {
-   userForm (){
-    return this.$store.getters.getFormUser
-   }
+    userForm() {
+      return this.$store.getters.getFormUser
+    }
   }
- }
+}
 </script>
 
 <style scoped>

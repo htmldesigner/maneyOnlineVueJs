@@ -5,7 +5,7 @@
 
       <form class="form-signin" @submit.prevent="handleSubmit(onSubmit)">
 
-        <h1 class="h3 mb-3">ЛИЧНЫЕ ДАННЫЕ</h1>
+        <h1 class="h3 mb-3">{{$t('forms.private_office')}}</h1>
 
         <hr class="header-line"/>
 
@@ -33,7 +33,7 @@
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">Имя</label>
+            <label class="w-30">{{$t('forms.name')}}</label>
             <input
                 class="form-control"
                 :class="{'is-invalid': errors[0]}"
@@ -49,7 +49,7 @@
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">Отчество</label>
+            <label class="w-30">{{$t('forms.middle_name')}}</label>
             <input
                 class="form-control"
                 v-model="getFormUser.Midlename"
@@ -65,7 +65,7 @@
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">Фамилия</label>
+            <label class="w-30">{{$t('forms.surname')}}</label>
             <input
                 class="form-control"
                 v-model="getFormUser.Surname"
@@ -85,7 +85,7 @@
         </div>
 
         <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-          <label class="w-30">Семейная жизнь</label>
+          <label class="w-30">{{$t('forms.family')}}</label>
           <div class="input-group-text form-control d-flex flex-row align-items-center mr-0 mr-md-2"
                :class="{active : getFormUser.LichiyeDannyeObshayaInformatcyaKolonkiLevayaSemeinoePolozhenie === 'не женат / не замужем'}">
             <input type="radio" name="family" value="не женат / не замужем"
@@ -126,7 +126,7 @@
         </div>
 
         <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-          <label class="w-30">ИИН</label>
+          <label class="w-30">{{$t('forms.IIN')}}</label>
           <input
               class="form-control"
               :disabled="getFormUser.LichiyeDannyeIIN.length"
@@ -139,7 +139,7 @@
 
         <ValidationProvider rules="required|numberOnly|documentID:9|documentIDMax:9" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">№ Удостоверения личности</label>
+            <label class="w-30">{{$t('forms.number_id')}}</label>
             <input
                 class="form-control"
                 type="text"
@@ -155,14 +155,14 @@
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label for="inputGroupSelect08" class="w-30">Место выдачи</label>
+            <label for="inputGroupSelect08" class="w-30">{{$t('forms.place_of_issue')}}</label>
             <select
                 class="custom-select"
                 id="inputGroupSelect08"
                 v-model="getFormUser.LichiyeDannyeDocumentVidan"
                 :class="{'is-invalid': errors[0]}"
             >
-              <option value="">Выберите из списка</option>
+              <option value="">{{$t('forms.select_from_list')}}</option>
               <option value="МВД РК">МВД РК</option>
               <option value="МЮ РК">МЮ РК</option>
             </select>
@@ -173,22 +173,22 @@
         </ValidationProvider>
 
         <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-          <label for="example-datetime-local-input" class="w-30">Дата выдачи</label>
+          <label for="example-datetime-local-input" class="w-30">{{$t('forms.date_of_issue')}}</label>
           <input class="form-control" type="date" v-model="documentSrokS" id="documentSrokS">
         </div>
 
         <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-          <label for="example-datetime-local-input" class="w-30">Срок действия</label>
+          <label for="example-datetime-local-input" class="w-30">{{$t('forms.validity')}}</label>
           <input class="form-control" type="date" v-model="documentSrokPo" id="documentSrokPo">
         </div>
 
-        <h1 class="h3 mb-3 mt-5">АДРЕС РЕГИСТРАЦИИ</h1>
+        <h1 class="h3 mb-3 mt-5">{{$t('forms.registration_address')}}</h1>
 
         <hr class="header-line"/>
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">Населенный пункт</label>
+            <label class="w-30">{{$t('forms.locality')}}</label>
             <input
                 class="form-control"
                 :class="{'is-invalid': errors[0]}"
@@ -204,7 +204,7 @@
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">Улица</label>
+            <label class="w-30">{{$t('forms.street')}}</label>
             <input
                 class="form-control"
                 :class="{'is-invalid': errors[0]}"
@@ -220,7 +220,7 @@
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">№ Дома</label>
+            <label class="w-30">{{$t('forms.house_number')}}</label>
             <input
                 class="form-control w-50"
                 :class="{'is-invalid': errors[0]}"
@@ -234,7 +234,7 @@
         </ValidationProvider>
 
         <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-          <label class="w-30">№ Квартиры</label>
+          <label class="w-30">{{$t('forms.room_number')}}</label>
           <input
               class="form-control w-50"
               v-model="getFormUser.KontaktnayaInformatsyaAdresPropiskiKvartira"
@@ -242,13 +242,13 @@
               placeholder="Введите номер квартиры">
         </div>
 
-        <h1 class="h3 mb-3 mt-5">АДРЕС ПРОЖИВАНИЯ</h1>
+        <h1 class="h3 mb-3 mt-5">{{$t('forms.residence_address')}}</h1>
 
         <hr class="header-line"/>
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">Населенный пункт</label>
+            <label class="w-30">{{$t('forms.locality')}}</label>
             <input
                 class="form-control"
                 :class="{'is-invalid': errors[0]}"
@@ -264,7 +264,7 @@
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">Улица</label>
+            <label class="w-30">{{$t('forms.street')}}</label>
             <input
                 class="form-control"
                 :class="{'is-invalid': errors[0]}"
@@ -280,7 +280,7 @@
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">№ Дома</label>
+            <label class="w-30">{{$t('forms.house_number')}}</label>
             <input
                 class="form-control w-50"
                 :class="{'is-invalid': errors[0]}"
@@ -294,7 +294,7 @@
         </ValidationProvider>
 
         <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-          <label class="w-30">№ Квартиры</label>
+          <label class="w-30">{{$t('forms.room_number')}}</label>
           <input
               class="form-control w-50"
               v-model="getFormUser.KontaktnayaInformatsyaAdresProzhivaniyaKvartira"
@@ -302,18 +302,18 @@
               placeholder="Введите номер квартиры">
         </div>
 
-        <h1 class="h3 mb-3 mt-5">МЕСТО РАБОТЫ</h1>
+        <h1 class="h3 mb-3 mt-5">{{$t('forms.work_place')}}</h1>
 
         <hr class="header-line"/>
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">Тип занятости</label>
+            <label class="w-30">{{$t('forms.busyness')}}</label>
             <select
                 class="custom-select"
                 :class="{'is-invalid': errors[0]}"
                 v-model="getFormUser.LichiyeDannyeObshayaInformatcyaKolonkiLevayaTipZanyatosti">
-              <option value="">Выберите из списка</option>
+              <option value="">{{$t('forms.select_from_list')}}</option>
               <option value="работа по найму / служба">Работа по найму / Служба</option>
               <option value="собственное дело">Собственное дело</option>
               <option value="домохозяйка">Домохозяйка</option>
@@ -329,7 +329,7 @@
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">Должность</label>
+            <label class="w-30">{{$t('forms.position')}}</label>
             <input
                 class="form-control"
                 v-model="getFormUser.RabotaOsnovnoeMestoDolzhnost"
@@ -345,7 +345,7 @@
 
         <ValidationProvider rules="required|numberOnly" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">Ежемесячный доход</label>
+            <label class="w-30">{{$t('forms.earnings')}}</label>
             <input
                 class="form-control"
                 v-model="getFormUser.DokhodyRaskhodyDokhodyEzhemesyachiyeOsnovMestoRaboty"
@@ -361,7 +361,7 @@
 
         <ValidationProvider rules="required|numberOnly" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">Ежемесячные расходы по кредиту</label>
+            <label class="w-30">{{$t('forms.loan_costs')}}</label>
             <input
                 class="form-control"
                 v-model="getFormUser.DokhodyRaskhodyRaskhodyViplatyPoCreditam"
@@ -377,7 +377,7 @@
 
         <ValidationProvider rules="required|numberOnly" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">Дополнительный доход</label>
+            <label class="w-30">{{$t('forms.additional_income')}}</label>
             <input
                 class="form-control"
                 v-model="getFormUser.DokhodyRaskhodyDokhodyEzhemesyachiyePoSovmestitelstvu"
@@ -391,7 +391,7 @@
           </div>
         </ValidationProvider>
 
-        <button class="btn btn-lg btn-primary btn-block mt-5 w-50" type="submit">Далее</button>
+        <button class="btn btn-lg btn-primary btn-block mt-5 w-50" type="submit">{{$t('buttons.next')}}</button>
       </form>
 
     </ValidationObserver>

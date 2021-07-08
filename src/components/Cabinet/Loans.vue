@@ -3,12 +3,12 @@
     <table class="table table-striped content-table ru-version border-top-none mt-5">
       <thead>
       <tr>
-        <th scope="col">№ Займа</th>
-        <th scope="col">Сумма займа</th>
-        <th scope="col">Задолженность</th>
-        <th scope="col">Дата получения</th>
-        <th scope="col">Дата погашения</th>
-        <th scope="col">Статус</th>
+        <th scope="col">{{$t('cabinet.loan_No')}}</th>
+        <th scope="col">{{$t('cabinet.loan_amount')}}</th>
+        <th scope="col">{{$t('cabinet.debt')}}</th>
+        <th scope="col">{{$t('cabinet.date_receiving')}}</th>
+        <th scope="col">{{$t('cabinet.maturity_date')}}</th>
+        <th scope="col">{{$t('cabinet.status')}}</th>
         <th scope="col">&nbsp;</th>
       </tr>
       </thead>
@@ -28,7 +28,7 @@
               type="button"
               class="btn btn-primary"
               @click="$refs.RepaymentModal.modalInit(loan.id)"
-          >Оплатить
+          >{{$t('buttons.pay')}}
           </button>
 
           <button
@@ -36,7 +36,7 @@
               type="button"
               class="btn btn-primary"
               @click="actions({loanID: loan.id, action: 'selectPaymentMethod'})"
-          >Выбрать способ выплат
+          >{{$t('buttons.payment_method')}}
           </button>
 
           <button
@@ -44,7 +44,7 @@
               type="button"
               class="btn btn-primary"
               @click="actions({loanID: loan.id, action: 'waitingSigningContract'})"
-          >Скачать договор
+          >{{$t('buttons.download_contract')}}
           </button>
 
           <button
@@ -52,7 +52,7 @@
               type="button"
               class="btn btn-primary"
               @click="actions({loanID: loan.id, action: 'confirmSignBySMS'})"
-          >Отправить SMS подтверждения
+          >{{$t('buttons.send_sms')}}
           </button>
 
           <button
@@ -60,7 +60,7 @@
               type="button"
               class="btn btn-primary"
               @click="actions({loanID: loan.id, action: 'signBySMS'})"
-          >Подписать договор
+          >{{$t('buttons.sign_contract')}}
           </button>
 
           <button
@@ -68,7 +68,7 @@
               type="button"
               class="btn btn-primary"
               @click="actions({loanID: loan.id, action: 'getMoney'})"
-          >Получить средства
+          >{{$t('buttons.get_money')}}
           </button>
 
         </td>
@@ -81,8 +81,8 @@
       <div class="contract-link d-flex mt-3" v-if="activeLoan[0].contract_link">
         <a :href="activeLoan[0].contract_link" target="_blank">
           <img style="position: relative; top: 4px; width: 36px" src="@/assets/pdf_icon.svg" alt="alt"
-               title="Скачать договор">
-          <span>Скачать договор</span>
+               :title=`${$t('buttons.download_contract')}`>
+          <span>{{$t('buttons.download_contract')}}</span>
         </a>
       </div>
 

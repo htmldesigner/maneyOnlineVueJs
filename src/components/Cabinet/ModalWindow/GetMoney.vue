@@ -9,13 +9,13 @@
      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true"></span>
      </button>
-     <div v-if="!requestPayment">Ожидайте...</div>
+     <div v-if="!requestPayment">{{$t('message.wait')}}</div>
      <div v-else class="d-flex flex-column text-center">
       <button
        class="btn btn-lg btn-primary btn-block"
        :disabled="!requestPayment.redirect_url"
        @click.prevent="onSubmit">
-       Получить средства
+        {{$t('cabinet.get_money')}}
       </button>
      </div>
     </form>

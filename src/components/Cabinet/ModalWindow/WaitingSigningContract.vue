@@ -10,8 +10,8 @@
       <span aria-hidden="true"></span>
      </button>
      <div class="d-flex flex-column text-center">
-      <div v-if="!contract">Ожидайте...</div>
-      <a :download="contract" v-else :href="contract" target="_blank" class="btn btn-lg btn-primary btn-block">Скачать договор</a>
+      <div v-if="!contract">{{$t('message.wait')}}</div>
+      <a :download="contract" v-else :href="contract" target="_blank" class="btn btn-lg btn-primary btn-block">{{$t('buttons.download_contract')}}</a>
      </div>
     </form>
    </div>

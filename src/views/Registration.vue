@@ -10,9 +10,9 @@
        <img v-else alt="Alt" class="step-thumb" src="@/assets/image/step-success.svg">
       </div>
       <div class="step-content">
-       <h4 class="step-title mb-0 active">Регистрация</h4>
-       <p v-if="!isUserLoggedIn" class="step-desc mb-0">В ожидании</p>
-       <p v-else class="step-desc mb-0">Успешно</p>
+       <h4 class="step-title mb-0 active">{{ $t('steps.registration')}}</h4>
+       <p v-if="!isUserLoggedIn" class="step-desc mb-0">{{ $t('steps.await')}}</p>
+       <p v-else class="step-desc mb-0">{{ $t('steps.done')}}</p>
       </div>
      </div>
 
@@ -27,9 +27,9 @@
             src="@/assets/image/step-success.svg">
       </div>
       <div class="step-content">
-       <h4 class="step-title mb-0">Личные данные</h4>
-       <p v-if="isUserLoggedIn && userFormStatus" class="step-desc mb-0">Успешно</p>
-       <p v-else class="step-desc mb-0">В ожидании</p>
+       <h4 class="step-title mb-0">{{ $t('steps.personal_data')}}</h4>
+       <p v-if="isUserLoggedIn && userFormStatus" class="step-desc mb-0">{{ $t('steps.done')}}</p>
+       <p v-else class="step-desc mb-0">{{ $t('steps.await')}}</p>
       </div>
      </div>
 
@@ -44,9 +44,9 @@
             src="@/assets/image/step-success.svg"/>
       </div>
       <div class="step-content">
-       <h4 class="step-title mb-0">Получение</h4>
-       <p v-if="isUserLoggedIn && userFormStatus && methodGetMoneyStatus" class="step-desc mb-0">Успешно</p>
-       <p v-else class="step-desc mb-0">В ожидании</p>
+       <h4 class="step-title mb-0">{{ $t('steps.receiving')}}</h4>
+       <p v-if="isUserLoggedIn && userFormStatus && methodGetMoneyStatus" class="step-desc mb-0">{{ $t('steps.done')}}</p>
+       <p v-else class="step-desc mb-0">{{ $t('steps.await')}}</p>
       </div>
      </div>
 
