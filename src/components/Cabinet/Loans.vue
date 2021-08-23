@@ -80,8 +80,7 @@
 
       <div class="contract-link d-flex mt-3" v-if="activeLoan[0].contract_link">
         <a :href="activeLoan[0].contract_link" target="_blank">
-          <img style="position: relative; top: 4px; width: 36px" src="@/assets/pdf_icon.svg" alt="alt"
-               :title=`${$t('buttons.download_contract')}`>
+          <img style="position: relative; top: 4px; width: 36px" src="@/assets/pdf_icon.svg" alt="alt">
           <span>{{$t('buttons.download_contract')}}</span>
         </a>
       </div>
