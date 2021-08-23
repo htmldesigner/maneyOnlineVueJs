@@ -62,7 +62,7 @@
      <ul v-if="this.isUserLoggedIn" class="nav navbar-nav navbar-right login-user">
       <li class="dropdown open">
        <a href="#" class="dropdown-toggle d-flex align-items-center" data-toggle="dropdown">
-        <span class="glyphicon glyphicon-user"></span>&nbsp;
+<!--        <span class="glyphicon glyphicon-user white"></span>&nbsp;-->
         <span class="login-name">Аккаунт</span>
         <span class="glyphicon glyphicon-chevron-down"></span>
        </a>

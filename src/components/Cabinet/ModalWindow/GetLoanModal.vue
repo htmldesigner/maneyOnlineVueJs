@@ -89,7 +89,7 @@
 
           </div>
           <div class="d-flex flex-column text-center">
-            <button class="btn btn-lg btn-primary btn-block mt-3 mb-3" :disabled="!doc_photo || !photo" @click.prevent="onSubmit">{{$t('buttons.confirm')}}</button>
+            <button class="btn btn-lg btn-primary btn-block mt-3 mb-3" :disabled="!doc_photo || !photo || isDisabled" @click.prevent="onSubmit">{{$t('buttons.confirm')}}</button>
           </div>
 
         </form>
@@ -125,7 +125,8 @@ export default {
       sum: 150000,
       period: 20,
       method: 1,
-      nextPhoto: null
+      nextPhoto: null,
+      isDisabled: false
     }
   },
   filters: {
@@ -161,6 +162,9 @@ export default {
     async onSubmit() {
       try {
         if (this.sum) {
+
+          this.isDisabled = !this.isDisabled
+
           let data = {
             sum: this.sum,
             period: this.period,
@@ -172,6 +176,9 @@ export default {
           await this.modalHide()
           await this.$store.dispatch('setSuccess', 'Ваша заявка на расмотрении')
           await this.$store.dispatch('getLoanList')
+
+          this.isDisabled = false
+
         }
       } catch (error) {
         throw error

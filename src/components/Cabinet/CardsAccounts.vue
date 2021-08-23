@@ -12,8 +12,8 @@
      </select>
     </div>
    </dt>
-   <dt class="col-md-2 mt-md-4 text-md-center"><a class="default-btn" href="#">{{$t('cabinet.add_new_card')}}</a></dt>
-   <dt class="col-md-3 mt-md-4"><a class="default-btn" href="#">{{$t('cabinet.remove_card')}}</a></dt>
+   <dt class="col-md-2 mt-md-4 text-md-center"><a class="default-btn" href="#">{{$t('buttons.add_new_card')}}</a></dt>
+   <dt class="col-md-3 mt-md-4"><a class="default-btn" href="#">{{$t('buttons.remove_card')}}</a></dt>
   </dl>
 
 <!--  <dl class="row mt-5 d-flex flex-row align-items-center justify-content-start">-->
