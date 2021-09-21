@@ -91,7 +91,6 @@ export default {
     },
 
     async startup() {
-
       try {
         this.stream = await navigator.mediaDevices.getUserMedia(
             {

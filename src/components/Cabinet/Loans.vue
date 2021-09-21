@@ -76,16 +76,12 @@
       </tbody>
     </table>
 
-
-
       <div class="contract-link d-flex mt-3" v-if="activeLoan[0].contract_link">
         <a :href="activeLoan[0].contract_link" target="_blank">
           <img style="position: relative; top: 4px; width: 36px" src="@/assets/pdf_icon.svg" alt="alt">
           <span>{{$t('buttons.download_contract')}}</span>
         </a>
       </div>
-
-
 
 <!--    <nav aria-label="Page navigation example">-->
 <!--      <ul class="pagination justify-content-end mt-3">-->
@@ -165,6 +161,7 @@ export default {
 
   mounted() {
     this.$store.dispatch('getLoanList')
+    this.$store.dispatch('getUserCards')
   }
 }
 </script>

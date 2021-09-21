@@ -9,7 +9,8 @@ export default {
     contract: null,
     requestPayment: null,
     debt: null,
-    language: localStorage.getItem('selectedLang') || null
+    language: localStorage.getItem('selectedLang') || null,
+    userCards: null
   },
   mutations: {
     SET_LOAN(state, payload) {
@@ -31,18 +32,48 @@ export default {
     SET_DEBT(state, payload) {
       state.debt = payload
     },
-    SET_LANGUAGE(state, payload){
+    SET_LANGUAGE(state, payload) {
       state.language = payload
+    },
+    SET_USER_CARDS(state, payload) {
+      state.userCards = payload
     }
   },
   actions: {
+    /**
+     * Получить карты пользователя
+     * @param commit
+     * @returns {Promise<void>}
+     */
+    async getUserCards({commit}) {
+      const {data} = await api.getUserCards()
+      console.log(data)
+      commit('SET_USER_CARDS', data)
+    },
+
+    async setActiveUserCard({dispatch}, id) {
+      await api.setActiveUserCard(id)
+      dispatch('getUserCards')
+    },
+
+    async addCard({commit, dispatch}, payload) {
+      commit('clearError')
+      try {
+        await api.addCard(payload)
+        dispatch('getUserCards')
+        commit('setSuccess', 'Успешно')
+      } catch (error) {
+        commit('setError', 'Ошибка')
+      }
+    },
+
     /**
      * Смена языка
      * @param commit
      * @return {Promise<void>}
      */
-    async localChanger({commit}, payload){
-      commit ('SET_LANGUAGE', payload)
+    async localChanger({commit}, payload) {
+      commit('SET_LANGUAGE', payload)
     },
 
     /**
@@ -195,6 +226,7 @@ export default {
     getContract: state => state.contract ?? false,
     getRequestPayment: state => state.requestPayment ?? false,
     getDebt: state => state.debt ?? false,
-    getLanguage: state => state.language
+    getLanguage: state => state.language,
+    userCards: state => state.userCards
   }
 }
