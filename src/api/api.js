@@ -50,9 +50,17 @@ export default {
     return axios.put('https://express-zaim.web-design.kz/api/user/cards/' + id);
   },
 
-
+  /**
+   * Добавить карту
+   * @param payload
+   * @returns {AxiosPromise}
+   */
   addCard(payload) {
     return axios(this.dataPost('/user/cards', payload))
+  },
+
+  removeCard(id){
+    return axios.delete('https://express-zaim.web-design.kz/api/user/cards/' + id);
   },
 
   checkRegistration(axios) {

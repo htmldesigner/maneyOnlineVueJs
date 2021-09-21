@@ -51,15 +51,52 @@ export default {
       commit('SET_USER_CARDS', data)
     },
 
-    async setActiveUserCard({dispatch}, id) {
-      await api.setActiveUserCard(id)
-      dispatch('getUserCards')
+    /**
+     * Активировать карту
+     * @param dispatch
+     * @param id
+     * @returns {Promise<void>}
+     */
+    async setActiveUserCard({commit, dispatch}, id) {
+      commit('clearError')
+      try {
+        await api.setActiveUserCard(id)
+        dispatch('getUserCards')
+        commit('setSuccess', 'Выбрана активная карта')
+      } catch (error) {
+        commit('setError', 'Ошибка')
+      }
     },
 
+    /**
+     * Добавить карту
+     * @param commit
+     * @param dispatch
+     * @param payload
+     * @returns {Promise<void>}
+     */
     async addCard({commit, dispatch}, payload) {
       commit('clearError')
       try {
         await api.addCard(payload)
+        dispatch('getUserCards')
+        commit('setSuccess', 'Успешно')
+      } catch (error) {
+        commit('setError', 'Ошибка')
+      }
+    },
+
+    /**
+     * Удаление карты пользователя
+     * @param commit
+     * @param dispatch
+     * @param payload
+     * @returns {Promise<void>}
+     */
+    async removeCard({commit, dispatch}, payload) {
+      commit('clearError')
+      try {
+        await api.removeCard(payload)
         dispatch('getUserCards')
         commit('setSuccess', 'Успешно')
       } catch (error) {

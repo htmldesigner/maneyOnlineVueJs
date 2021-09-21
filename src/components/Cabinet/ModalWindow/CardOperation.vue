@@ -4,7 +4,8 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content p-0">
 
-        <slot></slot>
+        <slot v-if="slotName === 'addCard'" name="addCard"></slot>
+        <slot v-if="slotName === 'removeCard'" name="removeCard"></slot>
 
       </div>
     </div>
@@ -16,6 +17,7 @@ import $ from "jquery";
 
 export default {
   name: "CardOperation",
+  props:['slotName'],
   methods: {
     async modalInit() {
       $('#cardOperation').modal('show');
