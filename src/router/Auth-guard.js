@@ -4,6 +4,6 @@ export default function (to, from, next) {
     if(store.getters.isUserLoggedIn){
         next()
     }else {
-        next('https://express-zaim.web-design.kz/')
+        next('https://lk.expresszaim.kz/')
     }
 }

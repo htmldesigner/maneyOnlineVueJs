@@ -47,7 +47,7 @@ export default {
    * @returns {Promise<AxiosResponse<any>>}
    */
   setActiveUserCard(id) {
-    return axios.put('https://express-zaim.web-design.kz/api/user/cards/' + id);
+    return axios.put('https://expresszaim.kz/api/user/cards/' + id);
   },
 
   /**
@@ -60,7 +60,7 @@ export default {
   },
 
   removeCard(id){
-    return axios.delete('https://express-zaim.web-design.kz/api/user/cards/' + id);
+    return axios.delete('https://expresszaim.kz/api/user/cards/' + id);
   },
 
   checkRegistration(axios) {

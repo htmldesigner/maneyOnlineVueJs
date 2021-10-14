@@ -39,7 +39,7 @@ const routes = [
 	// 	// which is lazy-loaded when the route is visited.
 	// 	component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
 	// },
-	{ path: '*', beforeEnter: () => {window.location.href = 'https://express-zaim.web-design.kz/'}}
+	{ path: '*', beforeEnter: () => {window.location.href = 'https://expresszaim.kz/'}}
 ];
 
 const router = new VueRouter({

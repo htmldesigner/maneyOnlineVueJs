@@ -2,7 +2,7 @@
  <header class="shadow-sm bg-blue">
   <div class="container">
    <nav class="navbar navbar-expand-md navbar-white">
-    <a href="http://express-zaim.web-design.kz" class="navbar-brand mr-4">
+    <a href="https://expresszaim.kz/" class="navbar-brand mr-4">
      <img
       src="@/assets/image/brand.svg"
       class="navbar-brand-img d-none d-sm-block desktop-logo"
@@ -43,13 +43,13 @@
     <div class="navbar-collapse collapse" id="navbarCollapse">
      <ul class="navbar-nav mr-auto ml-0 ml-sm-3">
       <li class="nav-item active">
-       <a class="nav-link" href="https://express-zaim.web-design.kz/how_to_get_credit">{{$t('links.how_to_get_credit', { value: 'Как получить кредит'})}}</a>
+       <a class="nav-link" href="https://expresszaim.kz/how_to_get_credit">{{$t('links.how_to_get_credit', { value: 'Как получить кредит'})}}</a>
       </li>
       <li class="nav-item">
-       <a class="nav-link" href="https://express-zaim.web-design.kz/how_to_pay">{{$t('links.how_to_pay', { value: 'Как оплатить кредит'})}}</a>
+       <a class="nav-link" href="https://expresszaim.kz/how_to_pay">{{$t('links.how_to_pay', { value: 'Как оплатить кредит'})}}</a>
       </li>
       <li class="nav-item">
-       <a class="nav-link" href="https://express-zaim.web-design.kz/#department">{{$t('links.department', { value: 'Наши отделения'})}}</a>
+       <a class="nav-link" href="https://expresszaim.kz/#department">{{$t('links.department', { value: 'Наши отделения'})}}</a>
       </li>
      </ul>
      <div class="block-phone text-right">
@@ -124,7 +124,7 @@
   logOut(){
    this.$store.dispatch('logOut').then(()=>{
     // this.$router.push('/login')
-     window.location.href = 'https://express-zaim.web-design.kz/'
+     window.location.href = 'https://expresszaim.kz/'
    })
 
    }
