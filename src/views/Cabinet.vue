@@ -11,7 +11,7 @@
                 <a class="nav-link"
                    :class="{active: currentComponent === 'Loans'}"
                    @click="currentComponent = 'Loans'"
-                >{{$t('cabinet.active_loan')}}</a>
+                >{{ $t('cabinet.active_loan') }}</a>
               </li>
 
 
@@ -19,7 +19,7 @@
                 <a class="nav-link"
                    :class="{active: currentComponent === 'Archive'}"
                    @click="currentComponent = 'Archive'"
-                >{{$t('cabinet.archive_loan')}}</a>
+                >{{ $t('cabinet.archive_loan') }}</a>
               </li>
 
 
@@ -27,21 +27,21 @@
                 <a class="nav-link"
                    :class="{active: currentComponent === 'CardsAccounts'}"
                    @click="currentComponent = 'CardsAccounts'"
-                >{{$t('cabinet.cards')}}</a>
+                >{{ $t('cabinet.cards') }}</a>
               </li>
 
               <li class="nav-item">
                 <a class="nav-link"
                    :class="{active: currentComponent === 'PersonalData'}"
                    @click="currentComponent = 'PersonalData'"
-                >{{$t('cabinet.cards')}}</a>
+                >{{ $t('cabinet.cards') }}</a>
               </li>
 
               <li class="nav-item">
                 <a class="nav-link"
                    :class="{active: currentComponent === 'Feedback'}"
                    @click="currentComponent = 'Feedback'"
-                >{{$t('cabinet.callback')}}</a>
+                >{{ $t('cabinet.callback') }}</a>
               </li>
 
             </ul>
@@ -50,11 +50,11 @@
               <li class="nav-item ml-0 ml-md-auto mt-3 mt-md-auto mb-3 mb-md-auto">
                 <button :disabled="activeLoan"
                         class="btn btn-lg btn-primary btn-block"
-                        @click="$refs.forLoanModal.modalInit()"
-                >{{$t('buttons.apply_loan')}}</button>
+                        @click.prevent="loanModal"
+                >{{ $t('buttons.apply_loan') }}
+                </button>
               </li>
             </ul>
-
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane" :class="{active: currentComponent}">
                 <keep-alive>
@@ -62,14 +62,12 @@
                 </keep-alive>
               </div>
             </div>
-
           </div>
         </div>
       </div>
     </div>
-    <GetLoanModal ref="forLoanModal"/>
+    <GetLoanModal ref="forLoanModal" :openLoanModal="openLoanModal" @closeLoanModal="openLoanModal = false"/>
   </div>
-
 </template>
 
 <script>
@@ -79,9 +77,11 @@ import PersonalData from "../components/Cabinet/PersonalData";
 import Feedback from "../components/Cabinet/Feedback";
 import GetLoanModal from "../components/Cabinet/ModalWindow/GetLoanModal";
 import Archive from "../components/Cabinet/Archive";
+import Camera from "../components/Camera";
 
 export default {
   components: {
+    Camera,
     Loans,
     CardsAccounts,
     PersonalData,
@@ -109,7 +109,14 @@ export default {
   },
   data() {
     return {
+      openLoanModal: false,
       currentComponent: 'Loans'
+    }
+  },
+  methods: {
+    loanModal() {
+      this.openLoanModal = true
+      this.$refs.forLoanModal.modalInit()
     }
   },
   beforeRouteEnter(to, from, next) {
