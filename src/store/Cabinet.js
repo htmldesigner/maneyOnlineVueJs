@@ -47,7 +47,6 @@ export default {
      */
     async getUserCards({commit}) {
       const {data} = await api.getUserCards()
-      console.log(data)
       commit('SET_USER_CARDS', data)
     },
 

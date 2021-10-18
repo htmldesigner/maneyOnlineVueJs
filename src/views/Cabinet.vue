@@ -34,7 +34,7 @@
                 <a class="nav-link"
                    :class="{active: currentComponent === 'PersonalData'}"
                    @click="currentComponent = 'PersonalData'"
-                >{{ $t('cabinet.cards') }}</a>
+                >{{ $t('cabinet.personal_data') }}</a>
               </li>
 
               <li class="nav-item">
@@ -100,6 +100,7 @@ export default {
       return this.$store.getters.checkPaymentMethod
     },
     activeLoan() {
+
       if (this.$store.getters.getActiveLoan?.length) {
         return true
       } else {

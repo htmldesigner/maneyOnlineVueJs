@@ -5,35 +5,62 @@
 
       <form class="form-signin" @submit.prevent="handleSubmit(onSubmit)">
 
-        <h1 class="h3 mb-3">{{$t('forms.private_office')}}</h1>
+        <h1 class="h3 mb-3">{{ $t('forms.private_office') }}</h1>
 
         <hr class="header-line"/>
 
-
         <div class="d-flex flex-wrap justify-content-lg-between justify-content-center mb-5" style="width: 100%">
-          <Biometry
-              @onImage="setDocPhoto"
-              @onClear="clearDocPhoto"
-              :title="'Фото удостоверения'"
-              :widthCss="320"
-              :heightCss="240"
-              :corner="{height: '200px', width: '280px', color: '#fff'}"
-          />
 
-          <Biometry v-if="doc_photo"
-                    @onImage="setPhoto"
-                    @onClear="clearPhoto"
-                    :title="'Ваше фото'"
-                    :widthCss="200"
-                    :heightCss="240"
-                    :corner="{height: '220px', width: '180px', color: '#fff'}"
-          />
+          <div class="container">
+            <div class="row">
+              <div class="col-md-6">
+                <div>
+                  <div><p class="text-center"><strong>Фото удостоверения</strong></p></div>
+                  <Camera
+                      @onImage="setDocPhoto"
+                      @onClear="clearDocPhoto"
+                      :corner="{height: '180px', width: '250px', color: '#fff'}"
+                      ref="cameraRef"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div v-if="doc_photo">
+                  <div><p class="text-center"><strong>Ваше фото</strong></p></div>
+                  <Camera
+                      @onImage="setPhoto"
+                      @onClear="clearPhoto"
+                      :corner="{height: '220px', width: '180px', color: '#fff'}"
+                      ref="cameraRef"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!--          <Biometry-->
+          <!--              @onImage="setDocPhoto"-->
+          <!--              @onClear="clearDocPhoto"-->
+          <!--              :title="'Фото удостоверения'"-->
+          <!--              :widthCss="320"-->
+          <!--              :heightCss="240"-->
+          <!--              :corner="{height: '200px', width: '280px', color: '#fff'}"-->
+          <!--          />-->
+
+          <!--          <Biometry v-if="doc_photo"-->
+          <!--                    @onImage="setPhoto"-->
+          <!--                    @onClear="clearPhoto"-->
+          <!--                    :title="'Ваше фото'"-->
+          <!--                    :widthCss="200"-->
+          <!--                    :heightCss="240"-->
+          <!--                    :corner="{height: '220px', width: '180px', color: '#fff'}"-->
+          <!--          />-->
         </div>
-
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">{{$t('forms.name')}}</label>
+            <label class="w-30">{{ $t('forms.name') }}</label>
             <input
                 class="form-control"
                 :class="{'is-invalid': errors[0]}"
@@ -49,7 +76,7 @@
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">{{$t('forms.middle_name')}}</label>
+            <label class="w-30">{{ $t('forms.middle_name') }}</label>
             <input
                 class="form-control"
                 v-model="getFormUser.Midlename"
@@ -65,7 +92,7 @@
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">{{$t('forms.surname')}}</label>
+            <label class="w-30">{{ $t('forms.surname') }}</label>
             <input
                 class="form-control"
                 v-model="getFormUser.Surname"
@@ -85,7 +112,7 @@
         </div>
 
         <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-          <label class="w-30">{{$t('forms.family')}}</label>
+          <label class="w-30">{{ $t('forms.family') }}</label>
           <div class="input-group-text form-control d-flex flex-row align-items-center mr-0 mr-md-2"
                :class="{active : getFormUser.LichiyeDannyeObshayaInformatcyaKolonkiLevayaSemeinoePolozhenie === 'не женат / не замужем'}">
             <input type="radio" name="family" value="не женат / не замужем"
@@ -126,7 +153,7 @@
         </div>
 
         <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-          <label class="w-30">{{$t('forms.IIN')}}</label>
+          <label class="w-30">{{ $t('forms.IIN') }}</label>
           <input
               class="form-control"
               :disabled="getFormUser.LichiyeDannyeIIN.length"
@@ -139,7 +166,7 @@
 
         <ValidationProvider rules="required|numberOnly|documentID:9|documentIDMax:9" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">{{$t('forms.number_id')}}</label>
+            <label class="w-30">{{ $t('forms.number_id') }}</label>
             <input
                 class="form-control"
                 type="text"
@@ -155,14 +182,14 @@
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label for="inputGroupSelect08" class="w-30">{{$t('forms.place_of_issue')}}</label>
+            <label for="inputGroupSelect08" class="w-30">{{ $t('forms.place_of_issue') }}</label>
             <select
                 class="custom-select"
                 id="inputGroupSelect08"
                 v-model="getFormUser.LichiyeDannyeDocumentVidan"
                 :class="{'is-invalid': errors[0]}"
             >
-              <option value="">{{$t('forms.select_from_list')}}</option>
+              <option value="">{{ $t('forms.select_from_list') }}</option>
               <option value="МВД РК">МВД РК</option>
               <option value="МЮ РК">МЮ РК</option>
             </select>
@@ -173,22 +200,22 @@
         </ValidationProvider>
 
         <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-          <label for="example-datetime-local-input" class="w-30">{{$t('forms.date_of_issue')}}</label>
+          <label for="example-datetime-local-input" class="w-30">{{ $t('forms.date_of_issue') }}</label>
           <input class="form-control" type="date" v-model="documentSrokS" id="documentSrokS">
         </div>
 
         <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-          <label for="example-datetime-local-input" class="w-30">{{$t('forms.validity')}}</label>
+          <label for="example-datetime-local-input" class="w-30">{{ $t('forms.validity') }}</label>
           <input class="form-control" type="date" v-model="documentSrokPo" id="documentSrokPo">
         </div>
 
-        <h1 class="h3 mb-3 mt-5">{{$t('forms.registration_address')}}</h1>
+        <h1 class="h3 mb-3 mt-5">{{ $t('forms.registration_address') }}</h1>
 
         <hr class="header-line"/>
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">{{$t('forms.locality')}}</label>
+            <label class="w-30">{{ $t('forms.locality') }}</label>
             <input
                 class="form-control"
                 :class="{'is-invalid': errors[0]}"
@@ -204,7 +231,7 @@
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">{{$t('forms.street')}}</label>
+            <label class="w-30">{{ $t('forms.street') }}</label>
             <input
                 class="form-control"
                 :class="{'is-invalid': errors[0]}"
@@ -220,7 +247,7 @@
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">{{$t('forms.house_number')}}</label>
+            <label class="w-30">{{ $t('forms.house_number') }}</label>
             <input
                 class="form-control w-50"
                 :class="{'is-invalid': errors[0]}"
@@ -234,7 +261,7 @@
         </ValidationProvider>
 
         <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-          <label class="w-30">{{$t('forms.room_number')}}</label>
+          <label class="w-30">{{ $t('forms.room_number') }}</label>
           <input
               class="form-control w-50"
               v-model="getFormUser.KontaktnayaInformatsyaAdresPropiskiKvartira"
@@ -242,13 +269,13 @@
               placeholder="Введите номер квартиры">
         </div>
 
-        <h1 class="h3 mb-3 mt-5">{{$t('forms.residence_address')}}</h1>
+        <h1 class="h3 mb-3 mt-5">{{ $t('forms.residence_address') }}</h1>
 
         <hr class="header-line"/>
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">{{$t('forms.locality')}}</label>
+            <label class="w-30">{{ $t('forms.locality') }}</label>
             <input
                 class="form-control"
                 :class="{'is-invalid': errors[0]}"
@@ -264,7 +291,7 @@
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">{{$t('forms.street')}}</label>
+            <label class="w-30">{{ $t('forms.street') }}</label>
             <input
                 class="form-control"
                 :class="{'is-invalid': errors[0]}"
@@ -280,7 +307,7 @@
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">{{$t('forms.house_number')}}</label>
+            <label class="w-30">{{ $t('forms.house_number') }}</label>
             <input
                 class="form-control w-50"
                 :class="{'is-invalid': errors[0]}"
@@ -294,7 +321,7 @@
         </ValidationProvider>
 
         <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-          <label class="w-30">{{$t('forms.room_number')}}</label>
+          <label class="w-30">{{ $t('forms.room_number') }}</label>
           <input
               class="form-control w-50"
               v-model="getFormUser.KontaktnayaInformatsyaAdresProzhivaniyaKvartira"
@@ -302,18 +329,18 @@
               placeholder="Введите номер квартиры">
         </div>
 
-        <h1 class="h3 mb-3 mt-5">{{$t('forms.work_place')}}</h1>
+        <h1 class="h3 mb-3 mt-5">{{ $t('forms.work_place') }}</h1>
 
         <hr class="header-line"/>
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">{{$t('forms.busyness')}}</label>
+            <label class="w-30">{{ $t('forms.busyness') }}</label>
             <select
                 class="custom-select"
                 :class="{'is-invalid': errors[0]}"
                 v-model="getFormUser.LichiyeDannyeObshayaInformatcyaKolonkiLevayaTipZanyatosti">
-              <option value="">{{$t('forms.select_from_list')}}</option>
+              <option value="">{{ $t('forms.select_from_list') }}</option>
               <option value="работа по найму / служба">Работа по найму / Служба</option>
               <option value="собственное дело">Собственное дело</option>
               <option value="домохозяйка">Домохозяйка</option>
@@ -329,7 +356,7 @@
 
         <ValidationProvider rules="required" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">{{$t('forms.position')}}</label>
+            <label class="w-30">{{ $t('forms.position') }}</label>
             <input
                 class="form-control"
                 v-model="getFormUser.RabotaOsnovnoeMestoDolzhnost"
@@ -345,7 +372,7 @@
 
         <ValidationProvider rules="required|numberOnly" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">{{$t('forms.earnings')}}</label>
+            <label class="w-30">{{ $t('forms.earnings') }}</label>
             <input
                 class="form-control"
                 v-model="getFormUser.DokhodyRaskhodyDokhodyEzhemesyachiyeOsnovMestoRaboty"
@@ -361,7 +388,7 @@
 
         <ValidationProvider rules="required|numberOnly" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">{{$t('forms.loan_costs')}}</label>
+            <label class="w-30">{{ $t('forms.loan_costs') }}</label>
             <input
                 class="form-control"
                 v-model="getFormUser.DokhodyRaskhodyRaskhodyViplatyPoCreditam"
@@ -377,7 +404,7 @@
 
         <ValidationProvider rules="required|numberOnly" v-slot="{ errors }">
           <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-            <label class="w-30">{{$t('forms.additional_income')}}</label>
+            <label class="w-30">{{ $t('forms.additional_income') }}</label>
             <input
                 class="form-control"
                 v-model="getFormUser.DokhodyRaskhodyDokhodyEzhemesyachiyePoSovmestitelstvu"
@@ -391,7 +418,7 @@
           </div>
         </ValidationProvider>
 
-        <button class="btn btn-lg btn-primary btn-block mt-5 w-50" type="submit">{{$t('buttons.next')}}</button>
+        <button class="btn btn-lg btn-primary btn-block mt-5 w-50" type="submit">{{ $t('buttons.next') }}</button>
       </form>
 
     </ValidationObserver>
@@ -405,6 +432,7 @@ import DatePicker from 'vue2-datepicker';
 import 'vue2-datepicker/index.css';
 import 'vue2-datepicker/locale/ru';
 import Biometry from "../Biometry";
+import Camera from "../Camera";
 
 function emptyDate(date) {
   return date === '01.01.0001' ? '' : date
@@ -417,7 +445,11 @@ const dateFormatIn = 'YYYY-MM-DD'
 export default {
   name: "stepTwo",
   components: {
-    ValidationObserver, ValidationProvider, DatePicker, Biometry
+    ValidationObserver,
+    ValidationProvider,
+    DatePicker,
+    Biometry,
+    Camera
   },
   computed: {
     getFormUser() {
