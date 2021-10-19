@@ -99,8 +99,11 @@ export default {
     checkPaymentMethod() {
       return this.$store.getters.checkPaymentMethod
     },
-    activeLoan() {
 
+    userCards() {
+      return this.$store.getters.userCards.data
+    },
+    activeLoan() {
       if (this.$store.getters.getActiveLoan?.length) {
         return true
       } else {

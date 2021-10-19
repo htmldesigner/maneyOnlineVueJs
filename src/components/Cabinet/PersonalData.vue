@@ -27,6 +27,9 @@
         {{ userForm.KontaktnayaInformatsyaAdresPropiskiGorod }},
         {{ userForm.KontaktnayaInformatsyaAdresPropiskiUlitsa }},
         {{ userForm.KontaktnayaInformatsyaAdresPropiskiDom }}
+        <div v-if="userForm.KontaktnayaInformatsyaAdresPropiskiKvartira">
+          кв. {{ userForm.KontaktnayaInformatsyaAdresPropiskiKvartira }}
+        </div>
       </dd>
 
       <dt class="col-md-3">{{ $t('personal.iin') }}</dt>

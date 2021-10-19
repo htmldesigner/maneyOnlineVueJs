@@ -1,19 +1,20 @@
 <template>
   <div v-if="hasCard">
     <dl class="row mt-5 d-flex flex-row align-items-center justify-content-start">
-      <dt class="col-md-3">
 
-        <div class="input-group mb-4 d-flex flex-column" v-if="userCards">
-          <label class="mb-4 personal-card-text">{{ $t('cabinet.bank_cards') }}</label>
-          <select class="custom-select w-100" @change="selectActiveCard($event)">
-            <option :value="card.id" :selected="card.active" v-for="card in userCards" :key="card.id">
-              {{ card.card_number }}
-            </option>
-          </select>
+      <dt class="col-md-3">
+        <div v-if="userCards">
+          <label class="">{{ $t('cabinet.bank_cards') }}</label>
+          <input
+              disabled
+              class="form-control"
+              type="text"
+              v-model="userCards.card_number"
+          >
         </div>
       </dt>
 
-      <dt class="col-md-2 mt-md-4 text-md-center">
+      <dt class="col-md-2 mt-md-4 text-md-center" v-if="!userCards.card_number">
         <a class="default-btn" @click.prevent="addCard" href="#">{{ $t('buttons.add_new_card') }}</a>
       </dt>
       <dt class="col-md-3 mt-md-4">
@@ -57,24 +58,23 @@
 
       <template v-slot:removeCard>
         <div class="wraper" style="padding: 20px">
-          <div class="input-group mb-4 d-flex flex-column">
+          <div class="mb-4">
             <label class="mb-4 personal-card-text">Доступные карты</label>
-            <select class="custom-select w-100" @change="selectRemoveCard($event)">
-              <option :value="card.id" :selected="card.active" v-for="card in userCards" :key="card.id">
-                {{ card.card_number }}
-              </option>
-            </select>
+            <input
+                disabled
+                class="form-control"
+                type="text"
+                v-model="userCards.card_number"
+            >
           </div>
           <button
               class="btn btn-lg btn-primary mt-4 btn-block"
               type="submit"
-              @click.prevent="sendCardToRemove"
+              @click.prevent="sendCardToRemove(userCards.id)"
           >Удалить
           </button>
         </div>
       </template>
-
-
 
 
     </CardOperation>
@@ -100,13 +100,13 @@ export default {
   },
   computed: {
     userCards() {
-      return this.$store.getters.userCards.data
+      const card = this.$store.getters.userCards.data
+      return Object.assign({}, ...card)
     }
   },
   data() {
     return {
       card_number: '',
-      candidateForRemove: '',
       hasCard: true,
       slotName: ''
     }
@@ -128,20 +128,11 @@ export default {
         this.card_number = ''
       }
     },
-    selectRemoveCard(value){
-      this.candidateForRemove =  +value.target.value
-    },
-
-    sendCardToRemove() {
-      if (this.candidateForRemove) {
-        this.$store.dispatch('removeCard', this.candidateForRemove)
+    sendCardToRemove(id) {
+      if (id) {
+        this.$store.dispatch('removeCard', +id)
         this.$refs.operationWithCards.modalHide()
-        this.card_number = ''
       }
-    },
-
-    selectActiveCard(value) {
-      this.$store.dispatch('setActiveUserCard', +value.target.value)
     }
   }
 }

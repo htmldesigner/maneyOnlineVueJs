@@ -66,6 +66,7 @@
                   <div class="col-md-4 mt-4">
                     <label>{{ $t('forms.phone') }}</label>
                     <input
+                        disabled
                         class="form-control"
                         type="text"
                         placeholder="Укажите телефон"
@@ -125,7 +126,7 @@
                           v-model="familyStatus"
                           :class="{'is-invalid': errors[0]}"
                       >
-                        <option value="">{{ $t('forms.select_from_list') }}</option>
+                        <option value="" disabled>{{ $t('forms.select_from_list') }}</option>
                         <option value="не женат / не замуже">Не женат / Не замужем</option>
                         <option value="Женат / Замужем">Женат / Замужем</option>
                       </select>
@@ -133,16 +134,6 @@
                         {{ errors[0] }}
                       </div>
                     </ValidationProvider>
-                  </div>
-
-
-                  <div class="col-md-4 mt-4">
-                    <label>{{ $t('forms.residence_address') }}</label>
-                    <input
-                        class="form-control"
-                        type="text"
-                        placeholder="Адрес проживания"
-                    >
                   </div>
 
                   <div class="col-md-4 mt-4">
@@ -176,7 +167,7 @@
                         id="inputGroupSelect08"
                         v-model="placeIssue"
                     >
-                      <option value="">{{ $t('forms.select_from_list') }}</option>
+                      <option value="" disabled>{{ $t('forms.select_from_list') }}</option>
                       <option value="МВД РК">МВД РК</option>
                       <option value="МЮ РК">МЮ РК</option>
                     </select>
@@ -202,6 +193,54 @@
                         placeholder="Срок действия"
                         v-model="documentSrokPo"
                     >
+                  </div>
+
+
+                </div>
+              </div>
+
+
+              <div class="container">
+                <div class="row">
+
+                  <div class="col-md-4 mt-4">
+                    <label>{{ $t('forms.locality') }}</label>
+                    <input
+                        class="form-control"
+                        v-model="getFormUser.KontaktnayaInformatsyaAdresPropiskiGorod"
+                        type="text"
+                        placeholder="Введите место проживания"
+                    >
+                  </div>
+
+                  <div class="col-md-4 mt-4">
+                    <label>{{ $t('forms.street') }}</label>
+                    <input
+                        class="form-control"
+                        v-model="getFormUser.KontaktnayaInformatsyaAdresPropiskiUlitsa"
+                        type="text"
+                        placeholder="Введите улицу"
+                    >
+                  </div>
+
+
+                  <div class="col-md-4 mt-4">
+                    <label>{{ $t('forms.house_number') }}</label>
+                    <input
+                        class="form-control"
+                        v-model="getFormUser.KontaktnayaInformatsyaAdresPropiskiDom"
+                        type="text"
+                        placeholder="Введите номер дома">
+                  </div>
+
+
+                  <div class="col-md-4 mt-4">
+                    <label>{{ $t('forms.room_number') }}</label>
+                    <input
+                        class="form-control"
+                        v-model="getFormUser.KontaktnayaInformatsyaAdresPropiskiKvartira"
+                        type="text"
+                        placeholder="Введите номер квартиры">
                   </div>
 
 
