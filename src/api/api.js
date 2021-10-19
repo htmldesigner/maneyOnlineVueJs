@@ -61,7 +61,7 @@ export default {
 
   removeCard(id){
     // return axios.delete('https://expresszaim.kz/api/user/cards/' + id);
-    return axios.delete('https://express-zaim.web-design.kz/api/user/cards/' + id);
+    return axios.delete('https://expresszaim.kz/api/user/cards/' + id);
   },
 
   checkRegistration(axios) {

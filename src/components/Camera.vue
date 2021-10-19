@@ -88,7 +88,7 @@ export default {
   methods: {
     async onCapture() {
       this.img = this.$refs.webcam.capture();
-      this.$emit('onImage', await (await (await fetch(this.img))).blob())
+      this.$emit('onImage', this.img)
       this.onStop()
     },
     onStarted(stream) {

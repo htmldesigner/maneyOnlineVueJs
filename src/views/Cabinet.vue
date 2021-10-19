@@ -55,6 +55,7 @@
                 </button>
               </li>
             </ul>
+
             <div class="tab-content" id="myTabContent">
               <div class="tab-pane" :class="{active: currentComponent}">
                 <keep-alive>
@@ -63,6 +64,7 @@
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
