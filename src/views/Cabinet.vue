@@ -99,9 +99,9 @@ export default {
     checkPaymentMethod() {
       return this.$store.getters.checkPaymentMethod
     },
-
     userCards() {
-      return this.$store.getters.userCards.data
+      const card = this.$store.getters.userCards.data
+      return Object.assign({}, ...card)
     },
     activeLoan() {
       if (this.$store.getters.getActiveLoan?.length) {
@@ -119,8 +119,16 @@ export default {
   },
   methods: {
     loanModal() {
-      this.openLoanModal = true
-      this.$refs.forLoanModal.modalInit()
+      if (this.userCards.card_number) {
+        console.log('true')
+        this.openLoanModal = true
+        this.$refs.forLoanModal.modalInit()
+      } else {
+        this.$store.dispatch('setError', 'Укажите номер карты')
+        setTimeout(() => {
+          this.currentComponent = 'CardsAccounts'
+        }, 3000)
+      }
     }
   },
   beforeRouteEnter(to, from, next) {

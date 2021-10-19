@@ -22,21 +22,6 @@
       </dt>
     </dl>
 
-    <!--  <dl class="row mt-5 d-flex flex-row align-items-center justify-content-start">-->
-    <!--   <dt class="col-md-3">-->
-    <!--    <div class="input-group mb-4 d-flex flex-column">-->
-    <!--     <label class="mb-4 personal-card-text">БАНКОВСКИЕ СЧЕТА</label>-->
-    <!--     <select class="custom-select w-100">-->
-    <!--      <option selected="">5260-59хх-*****</option>-->
-    <!--      <option value="1">One</option>-->
-    <!--      <option value="2">Two</option>-->
-    <!--      <option value="3">Three</option>-->
-    <!--     </select>-->
-    <!--    </div>-->
-    <!--   </dt>-->
-    <!--   <dt class="col-md-2 mt-md-4 text-md-center"><a class="default-btn" href="#">Добавить счет</a></dt>-->
-    <!--  </dl>-->
-
     <CardOperation ref="operationWithCards" :slotName="slotName">
       <template v-slot:addCard>
         <div class="wraper" style="padding: 20px">
@@ -54,7 +39,6 @@
           </button>
         </div>
       </template>
-
 
       <template v-slot:removeCard>
         <div class="wraper" style="padding: 20px">
