@@ -10,7 +10,7 @@
     </button>
     <div><span class="glyphicon glyphicon-failure"></span></div>
     <div class="modal-body text-center">
-     <p>{{error}}</p>
+     <p v-html="error"></p>
     </div>
     <div class="modal-footer d-none">
      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -40,7 +40,7 @@
        setTimeout(() => {
         this.modalHide()
         this.$store.dispatch('clearError')
-       }, 3000)
+       }, 4000)
       })
 
      }

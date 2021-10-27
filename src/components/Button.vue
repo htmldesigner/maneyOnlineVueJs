@@ -98,6 +98,18 @@ export default {
           class: 'btn-outline-done',
           action: false
         },
+        {
+          loanID: this.loanID,
+          value: this.$t('buttons.overdue_90', {value: 'Просрочка 90 дней'}),
+          class: 'btn-outline-danger',
+          action: false
+        },
+        {
+          loanID: this.loanID,
+          value: this.$t('buttons.overdue', {value: 'Просрочка'}),
+          class: 'btn-outline-danger',
+          action: false
+        },
       ]
     }
   },

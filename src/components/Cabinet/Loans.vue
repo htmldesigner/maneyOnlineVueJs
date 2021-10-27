@@ -24,7 +24,7 @@
         </td>
         <td>
           <button
-              v-if="loan.status === 9"
+              v-if="loan.status === 9 || loan.status === 13"
               type="button"
               class="btn btn-primary"
               @click="$refs.RepaymentModal.modalInit(loan.id)"
@@ -69,6 +69,14 @@
               class="btn btn-primary"
               @click="actions({loanID: loan.id, action: 'getMoney'})"
           >{{$t('buttons.get_money')}}
+          </button>
+
+          <button
+              v-if="loan.status === 12"
+              type="button"
+              class="btn btn-danger"
+              @click="actions({loanID: loan.id, action: 'overDue'})"
+          >{{$t('buttons.message')}}
           </button>
 
         </td>
@@ -155,6 +163,8 @@ export default {
           return this.$refs.ConfirmSignBySMSModal.modalInit(value.loanID)
         case 'getMoney':
           return this.$refs.GetMoneyModal.modalInit(value.loanID)
+        case 'overDue':
+          return this.$store.commit('setError', this.$t('message.overDue') + '<br>' + "<a href='tel:+777 777 77 77'>+777 777 77 77</a>" )
       }
     }
   },

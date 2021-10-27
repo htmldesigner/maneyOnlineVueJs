@@ -46,7 +46,6 @@ export default {
 
   async mounted() {
     if (this.isUserLoggedIn) {
-      console.log('App comp anketa')
       await this.$store.dispatch('getUserForm')
       await this.$store.dispatch('checkPaymentMethod')
       if (this.userFormStatus && this.checkPaymentMethod !== null) {
