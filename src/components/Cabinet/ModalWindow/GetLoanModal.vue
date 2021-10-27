@@ -143,11 +143,9 @@ export default {
   },
   methods: {
     setDocPhoto(el) {
-      console.log(el, 'setDocPhoto')
       this.doc_photo = el
     },
     setPhoto(el) {
-      console.log(el, 'setPhoto')
       this.photo = el
     },
     clearDocPhoto() {
@@ -183,7 +181,7 @@ export default {
             photo: this.photo
           }
           await this.$store.dispatch('sendLoanRequest', data)
-          this.openLoanModal = false
+          this.$emit('closeLoanModal')
           await this.$store.dispatch('setSuccess', 'Ваша заявка на расмотрении')
           await this.$store.dispatch('getLoanList')
 

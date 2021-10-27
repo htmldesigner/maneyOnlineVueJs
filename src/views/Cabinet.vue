@@ -106,11 +106,8 @@ export default {
       return Object.assign({}, ...card)
     },
     activeLoan() {
-      if (this.$store.getters.getActiveLoan?.length) {
-        return true
-      } else {
-        return false
-      }
+      return !!this.$store.getters.getActiveLoan?.length
+
     }
   },
   data() {
@@ -122,7 +119,6 @@ export default {
   methods: {
     loanModal() {
       if (this.userCards.card_number) {
-        console.log('true')
         this.openLoanModal = true
         this.$refs.forLoanModal.modalInit()
       } else {
