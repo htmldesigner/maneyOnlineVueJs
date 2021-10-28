@@ -164,7 +164,7 @@ export default {
         case 'getMoney':
           return this.$refs.GetMoneyModal.modalInit(value.loanID)
         case 'overDue':
-          return this.$store.commit('setError', this.$t('message.overDue') + '<br>' + "<a href='tel:+777 777 77 77'>+777 777 77 77</a>" )
+          return this.$store.commit('setError', this.$t('message.overDue') + '<br>' + "<a href='tel:+7 747 980 15 85'>+7 747 980 15 85</a>" )
       }
     }
   },

@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap mb-auto mt-sm-auto">
+  <div class="wrap mt-5">
     <div class="container">
       <div class="row align-items-center justify-content-center flex-column">
         <div class="login-form">

@@ -61,7 +61,7 @@
     "stop": "Завершить",
     "confirm": "Подтвердить",
     "pay": "Оплатить",
-    "private_office": "Личный кабинет",
+    "private_office": "Кабинет",
     "restore_access": "Восстановить доступ",
     "apply_loan": "Оформить займ",
     "add_new_card": "Добавить карту",
@@ -110,8 +110,8 @@
     "validity": "Срок действия"
   },
   "links": {
-    "how_to_get_credit": "Как получить кредит",
-    "how_to_pay": "Как оплатить кредит",
+    "how_to_get_credit": "Как получить",
+    "how_to_pay": "Как оплатить",
     "department": "Наши отделения",
     "about": "О компании",
     "news": "Новости",

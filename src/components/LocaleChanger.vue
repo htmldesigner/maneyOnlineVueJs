@@ -1,10 +1,8 @@
 <template>
   <div class="locale-changer">
-    <select v-model="$i18n.locale" @change="setLang">
-      <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">
-        {{ lang }}
-      </option>
-    </select>
+    <ul>
+      <li :class="{'active': $i18n.locale === lang.locale}" v-for="(lang, i) of langs" :key="`Lang${i}`" @click.prevent="setLang(lang.locale)">{{lang.name}}</li>
+    </ul>
   </div>
 </template>
 
@@ -13,14 +11,17 @@ export default {
   name: "LocaleChanger",
   data() {
     return {
-      langs: ['ru', 'kz']
+      langs: [{name: 'қаз', locale: 'kz'}, {name: 'рус', locale: 'ru'}]
     }
   },
   methods: {
     setLang(val){
-      localStorage.setItem('selectedLang', val.target.value)
-      this.$store.dispatch('localChanger', val.target.value)
-      location.reload();
+      localStorage.setItem('selectedLang', val)
+      this.$store.dispatch('localChanger', val)
+      if (val !== this.$i18n.locale){
+        this.$i18n.locale = val
+        location.reload();
+      }
     }
   },
   mounted() {
@@ -28,17 +29,23 @@ export default {
     if (lang){
       this.$i18n.locale = lang.toString()
     }
-
   }
 }
 </script>
 
 <style scoped>
-.locale-changer select {
-  border: none!important;
-  border-radius: 3px;
-  width: 50px;
-  height: 30px;
-  padding-left: 8px;
+.lang ul li{
+  cursor: pointer;
+  font-family: Nunito Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  letter-spacing: 0.02em;
+  color: #8EDEFF;
+}
+.lang ul li.active{
+  cursor: default;
+
 }
 </style>

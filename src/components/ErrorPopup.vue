@@ -8,7 +8,7 @@
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
      <span aria-hidden="true"></span>
     </button>
-    <div><span class="glyphicon glyphicon-failure"></span></div>
+    <div class="d-flex justify-content-center"><span class="glyphicon glyphicon-failure"></span></div>
     <div class="modal-body text-center">
      <p v-html="error"></p>
     </div>

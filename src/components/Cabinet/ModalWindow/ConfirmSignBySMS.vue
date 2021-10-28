@@ -20,17 +20,17 @@
      <hr class="header-line"/>
      <div class="modal-body text-center p-0">
       <div class="input-group mb-5 sms-number">
-       <input class="form-control phoneCell" v-model.trim.number="num.cell_1" type="text" maxlength=1 placeholder="5"
+       <input class="form-control phoneCell" v-model.trim.number="num.cell_1" type="number" maxlength=1 placeholder="5"
               tabindex="1">
-       <input class="form-control phoneCell" v-model.trim.number="num.cell_2" type="text" maxlength=1 placeholder="5"
+       <input class="form-control phoneCell" v-model.trim.number="num.cell_2" type="number" maxlength=1 placeholder="5"
               tabindex="2">
-       <input class="form-control phoneCell" v-model.trim.number="num.cell_3" type="text" maxlength=1 placeholder="5"
+       <input class="form-control phoneCell" v-model.trim.number="num.cell_3" type="number" maxlength=1 placeholder="5"
               tabindex="3">
-       <input class="form-control phoneCell" v-model.trim.number="num.cell_4" type="text" maxlength=1 placeholder="5"
+       <input class="form-control phoneCell" v-model.trim.number="num.cell_4" type="number" maxlength=1 placeholder="5"
               tabindex="4">
-       <input class="form-control phoneCell" v-model.trim.number="num.cell_5" type="text" maxlength=1 placeholder="5"
+       <input class="form-control phoneCell" v-model.trim.number="num.cell_5" type="number" maxlength=1 placeholder="5"
               tabindex="5">
-       <input class="form-control phoneCell" v-model.trim.number="num.cell_6" type="text" maxlength=1 placeholder="5"
+       <input class="form-control phoneCell" v-model.trim.number="num.cell_6" type="number" maxlength=1 placeholder="5"
               tabindex="6">
       </div>
      </div>
