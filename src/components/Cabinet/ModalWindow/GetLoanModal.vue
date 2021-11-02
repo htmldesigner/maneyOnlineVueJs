@@ -50,7 +50,9 @@
 
             <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
               <label for="inputGroup01" class="w-50 text-left">{{ $t('cabinet.loan_amount') }}</label>
-              <input class="form-control" id="inputGroup01" min="15000" max="300000" step="500" v-model="sum"
+              <input
+                  @keydown="keydown"
+                  class="form-control" id="inputGroup01" min="15000" max="300000" step="500" v-model="sum"
                      placeholder="Введите сумму">
             </div>
 
@@ -110,6 +112,7 @@ export default {
   components: {
     Biometry, Camera
   },
+
   computed: {
     returnDay() {
       let date = moment().add(this.period, 'days')
@@ -142,6 +145,16 @@ export default {
     }
   },
   methods: {
+    keydown(event) {
+      if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'Enter'].indexOf(event.key) == -1 ) {
+        event.preventDefault()
+      }
+
+      if (parseInt(event.target.value + event.key) > 145000) {
+        event.target.value = 145000
+        event.preventDefault()
+      }
+    },
     setDocPhoto(el) {
       this.doc_photo = el
     },

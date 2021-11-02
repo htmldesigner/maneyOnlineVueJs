@@ -829,6 +829,10 @@ hr.header-line {
 	border: none !important;
 }
 
+.login-form, .wrap {
+	display: block;
+}
+
 @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
 	.wrap .form-signin {
 		padding: 20px 15px 20px;
@@ -910,6 +914,7 @@ hr.header-line {
 }
 
 @media (min-width: 768px) {
+
 	.login-form {
 		background: #ffffff;
 		border: 1px solid rgba(0, 0, 0, 0.1);
@@ -1000,6 +1005,7 @@ hr.header-line {
 	.ofzaim-table {
 		padding-top: 40px !important;
 	}
+
 }
 
 @media (min-width: 992px) {
