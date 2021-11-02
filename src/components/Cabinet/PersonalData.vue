@@ -47,6 +47,9 @@
       <dt class="col-md-3">{{ $t('personal.validity') }}</dt>
       <dd class="col-md-9">{{ moment(userForm.LichiyeDannyeDocumentSrokPo).format('YYYY-DD-MM') }}</dd>
 
+      <dt class="col-md-3 mb-3"> <button class="btn btn-lg btn-primary" @click.prevent="$router.push('/changepassword')">Смена пароля</button></dt>
+      <dd class="col-md-9"></dd>
+
       <dt class="col-md-3">
         <a class="default-btn"
            href="#"

@@ -5,6 +5,7 @@ import Registration from '../views/Registration.vue';
 import Login from '../views/Login.vue';
 import Cabinet from "../views/Cabinet";
 import RecoverPassword from "../views/RecoverPassword";
+import ChangePassword from "../views/ChangePassword";
 
 
 Vue.use(VueRouter);
@@ -29,6 +30,12 @@ const routes = [
 		path: '/cabinet',
 		name: 'Cabinet',
 		component: Cabinet,
+		beforeEnter: AuthGuard,
+	},
+	{
+		path: '/changepassword',
+		name: 'ChangePassword',
+		component: ChangePassword,
 		beforeEnter: AuthGuard,
 	},
 	// {

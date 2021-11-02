@@ -125,6 +125,7 @@
     "confirm_password": "Подтвердить пароль",
     "sign_in": "Войти",
     "registration": "Регистрация",
+    "password_recovery": "Восстановление пароля",
     "forgot_password": "Забыли пароль от аккаунта?",
     "restore_access": "Восстановите доступ",
     "IIN": "ИИН",

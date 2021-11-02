@@ -125,6 +125,7 @@
     "confirm_password": "Парольді растаңыз",
     "sign_in": "Войти",
     "registration": "Тіркеу",
+    "password_recovery": "Құпия сөзді қалпына келтіру",
     "forgot_password": "Акаунттың паролін ұмыттыңыз ба?",
     "restore_access": "Кіруді қалпына келтіріңіз",
     "IIN": "ЖСН",

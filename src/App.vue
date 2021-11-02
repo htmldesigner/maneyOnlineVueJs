@@ -37,7 +37,7 @@ export default {
       return this.$store.getters.userFormStatus
     },
     checkPaymentMethod() {
-      return this.$store.getters.checkPaymentMethod
+      return this.$store.getters.methodGetMoneyStatus
     }
   },
   data() {
@@ -48,13 +48,13 @@ export default {
     if (this.isUserLoggedIn) {
       await this.$store.dispatch('getUserForm')
       await this.$store.dispatch('checkPaymentMethod')
-      if (this.userFormStatus && this.checkPaymentMethod !== null) {
-        this.$router.push('/cabinet')
+      if (this.userFormStatus && !!this.checkPaymentMethod) {
+       this.$route.path === '/changepassword' ? this.$router.push('/changepassword').catch(err => {}) : this.$router.push('/cabinet')
       } else {
         this.$router.push('/registration').catch(err => {})
       }
-
       const token = localStorage.getItem('token')
+
       if (token) {
         parent.postMessage({token: token}, '*');
       }

@@ -207,8 +207,18 @@ export default {
   forgotPhone(payload) {
     return axios(this.dataPost('/forgot/phone', payload))
   },
+
   forgotCheck(payload) {
     return axios(this.dataPost('/forgot/check', payload))
+  },
+  /**
+   * Смена пароля
+   * @param payload
+   * @returns {AxiosPromise}
+   */
+  changePassword(payload){
+    return axios(this.dataPost('/user/changepass', payload))
   }
+
 
 }
