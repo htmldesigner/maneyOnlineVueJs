@@ -122,6 +122,7 @@
     "private_office": "ЛИЧНЫЙ КАБИНЕТ",
     "mobile_phone": "Мобильный телефон",
     "password": "Ваш пароль",
+    "new_password": "Новый пароль",
     "confirm_password": "Подтвердить пароль",
     "sign_in": "Войти",
     "registration": "Регистрация",

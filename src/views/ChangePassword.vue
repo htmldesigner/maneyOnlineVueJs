@@ -11,7 +11,7 @@
               <hr class="header-line"/>
 
               <div class="mb-3">
-                <label for="inputPassword">{{ $t('forms.password') }}</label>
+                <label for="inputPassword">{{ $t('forms.new_password') }}</label>
                 <ValidationProvider name="confirm" rules="required|digits_between:8,25" v-slot="{ errors }">
                   <input
                       type="password"
