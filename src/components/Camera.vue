@@ -27,7 +27,7 @@
 
     <div class="input-group mt-1 mb-1">
       <select v-model="camera" class="custom-select w-100">
-        <option disabled>-- Выбирите камеру --</option>
+        <option disabled>-- Выберите камеру --</option>
         <option
             v-for="device in devices"
             :key="device.deviceId"

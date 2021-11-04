@@ -126,8 +126,20 @@ extend("minSum", {
     return value >= min
   },
   params: ['min'],
-  message: i18n.t("validation.min_tenge", {min: min})
+  message: i18n.t("validation.min_tenge", (min) => {
+    return min})
 });
+
+extend("maxSum", {
+  async validate(value, { max }) {
+    return value <= max
+  },
+  params: ['max'],
+  message: i18n.t("validation.max_tenge", (max) => {
+    return max})
+});
+
+
 
 extend('digits_between', {
   async validate(value, { min, max }) {

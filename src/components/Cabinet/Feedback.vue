@@ -3,7 +3,7 @@
     <div class="msg_history">
 
       <div class="incoming_msg border-bottom d-flex align-items-center mb-5 pb-4 techpodderjka">
-        <div class="incoming_msg_img mr-3"><img src="@/assets/image/msg-icon.svg" alt="sunil"></div>
+        <div class="incoming_msg_img mr-3"><img src="@/assets/image/msg-icon_new.svg" alt="sunil"></div>
         <div class="received_msg">
           <div class="received_withd_msg">
             <p class="p-0">{{$t('cabinet.support')}}</p>
@@ -21,7 +21,7 @@
         </div>
 
         <div v-else class="incoming_msg mb-4">
-          <div class="incoming_msg_img mr-3"><img src="@/assets/image/msg-icon.svg" alt="sunil"></div>
+          <div class="incoming_msg_img mr-3"><img src="@/assets/image/msg-icon_new.svg" alt="sunil"></div>
           <div class="received_msg">
             <div class="received_withd_msg">
               <span class="time_date">{{$t('cabinet.support')}} {{ moment(message.created_at).format('HH:mm DD MMM YYYY') }}</span>

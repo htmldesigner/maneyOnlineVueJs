@@ -48,23 +48,24 @@
               </div>
             </div>
 
-            <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
-              <label for="inputGroup01" class="w-50 text-left">{{ $t('cabinet.loan_amount') }}</label>
-              <input
-                  @keydown="keydown"
-                  class="form-control" id="inputGroup01" min="15000" max="300000" step="500" v-model="sum"
-                     placeholder="Введите сумму">
-            </div>
-
-            <!--      <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">-->
-            <!--       <label for="inputGroupSelect01" class="w-50 text-left">Способ получения</label>-->
-            <!--       <select class="custom-select" id="inputGroupSelect01">-->
-            <!--        <option selected>5260-59хх-*****</option>-->
-            <!--        <option value="1">One</option>-->
-            <!--        <option value="2">Two</option>-->
-            <!--        <option value="3">Three</option>-->
-            <!--       </select>-->
-            <!--      </div>-->
+              <ValidationProvider rules="required|sum|minSum:15000|maxSum:145000" v-slot="{ errors }">
+                <div class="input-group mb-4 d-flex flex-row align-items-center justify-content-between">
+                  <label class="w-50 text-left">{{$t('cabinet.loan_amount')}}</label>
+                  <input
+                      id="inputPhone"
+                      class="form-control"
+                      :class="{'is-invalid': errors[0]}"
+                      type="text"
+                      placeholder="Введите сумму"
+                      required
+                      v-model.trim.number="sum"
+                      autocomplete="off"
+                  >
+                  <div v-if="errors[0]" class="invalid-feedback" style="text-align: right">
+                    {{ errors[0] }}
+                  </div>
+                </div>
+              </ValidationProvider>
 
             <div
                 class="input-group mb-4 d-flex flex-row p-0 justify-content-between align-items-center poluchenie-zaima">
@@ -92,7 +93,7 @@
 
           </div>
           <div class="d-flex flex-column text-center">
-            <button class="btn btn-lg btn-primary btn-block mt-3 mb-3" :disabled="!doc_photo || !photo || isDisabled"
+            <button class="btn btn-lg btn-primary btn-block mt-3 mb-3" :disabled="!doc_photo || !photo || sum <= 14999 || sum >= 145001 || isDisabled "
                     @click.prevent="onSubmit">{{ $t('buttons.confirm') }}
             </button>
           </div>
@@ -104,23 +105,32 @@
 
 <script>
 import $ from "jquery";
-import Biometry from "../../Biometry";
-import Camera from "../../Camera";
 
+import Camera from "../../Camera";
+import {ValidationProvider, ValidationObserver} from "vee-validate";
 export default {
   name: "GetLoanModal",
   components: {
-    Biometry, Camera
+    Camera, ValidationProvider, ValidationObserver
   },
 
   computed: {
+    // currentSum: {
+    //   get() {
+    //     return this.sum
+    //   },
+    //   set(value) {
+    //     console.log(value)
+    //     return this.sum = parseInt(value)
+    //   }
+    // },
     returnDay() {
       let date = moment().add(this.period, 'days')
       return date.format('DD.MM.YYYY')
     },
     returnMoney() {
       let percentage = parseInt(this.sum) * 1 / 100
-      return (percentage * parseInt(this.period)) + parseInt(this.sum)
+      return (percentage * parseInt(this.period)) + parseInt(this.sum) || 0
     }
   },
   props: {
@@ -132,7 +142,7 @@ export default {
     return {
       photo: null,
       doc_photo: null,
-      sum: 150000,
+      sum: 15000,
       period: 20,
       method: 1,
       nextPhoto: null,
@@ -146,7 +156,7 @@ export default {
   },
   methods: {
     keydown(event) {
-      if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'Enter'].indexOf(event.key) == -1 ) {
+      if (['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'Enter'].indexOf(event.key) == -1) {
         event.preventDefault()
       }
 
@@ -212,7 +222,7 @@ export default {
 </script>
 
 <style scoped>
-.loanModal{
+.loanModal {
   position: fixed;
   overflow: auto;
   top: 0;

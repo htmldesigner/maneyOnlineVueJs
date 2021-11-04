@@ -28,11 +28,15 @@
           <ul class="navbar-nav mr-auto ml-auto">
             <li class="nav-item active">
               <a class="nav-link"
-                 href="https://expresszaim.kz/how_to_get_credit">{{ $t('links.how_to_get_credit', {value: 'Как получить кредит'}) }}</a>
+                 href="https://expresszaim.kz/how_to_get_credit">{{
+                  $t('links.how_to_get_credit', {value: 'Как получить кредит'})
+                }}</a>
             </li>
             <li class="nav-item">
               <a class="nav-link"
-                 href="https://expresszaim.kz/how_to_pay">{{ $t('links.how_to_pay', {value: 'Как оплатить кредит'}) }}</a>
+                 href="https://expresszaim.kz/how_to_pay">{{
+                  $t('links.how_to_pay', {value: 'Как оплатить кредит'})
+                }}</a>
             </li>
             <li class="nav-item">
               <a class="nav-link"
@@ -92,7 +96,7 @@
               to="/"
               class="btn my-2 my-sm-0 btn-sign px-1"
           >
-            {{ $t('buttons.private_office', { value: 'Кабинет' }) }}
+            {{ $t('buttons.private_office', {value: 'Кабинет'}) }}
           </router-link>
 
         </div>
@@ -123,6 +127,16 @@ export default {
         window.location.href = 'https://expresszaim.kz/'
       })
 
+    }
+  },
+  mounted() {
+    if (/Android|webOS|iPhone|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
+      const lang = document.querySelector(".lang")
+      if (lang) {
+        const navBar = document.createElement("div")
+        navBar.classList.add('navbar')
+        lang.append(navBar)
+      }
     }
   }
 };

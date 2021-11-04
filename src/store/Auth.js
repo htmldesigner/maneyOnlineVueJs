@@ -53,6 +53,7 @@ export default {
             commit('SET_LOAN', null)
             commit('SET_USER_FORM', null)
         },
+
         /**
          * Востоновление пароля
          * @param commit
@@ -64,7 +65,12 @@ export default {
             try {
                 return await api.forgotPhone(payload)
             } catch (e) {
-                commit('setError', "Ошибка СМС центра попробуйте через 3 минуты")
+                if (e.response.status === 406) {
+                    commit('setError', "Аккаунта не существует")
+                }
+                if (e.response.status === 403) {
+                    commit('setError', "Ошибка СМС центра попробуйте через 3 минуты")
+                }
             }
         },
 
