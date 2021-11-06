@@ -3,12 +3,12 @@
     <table class="table table-striped content-table ru-version border-top-none mt-5">
       <thead>
       <tr>
-        <th scope="col">{{$t('cabinet.loan_No')}}</th>
-        <th scope="col">{{$t('cabinet.loan_amount')}}</th>
-        <th scope="col">{{$t('cabinet.debt')}}</th>
-        <th scope="col">{{$t('cabinet.date_receiving')}}</th>
-        <th scope="col">{{$t('cabinet.maturity_date')}}</th>
-        <th scope="col">{{$t('cabinet.status')}}</th>
+        <th scope="col">{{ $t('cabinet.loan_No') }}</th>
+        <th scope="col">{{ $t('cabinet.loan_amount') }}</th>
+        <th scope="col">{{ $t('cabinet.debt') }}</th>
+        <th scope="col">{{ $t('cabinet.date_receiving') }}</th>
+        <th scope="col">{{ $t('cabinet.maturity_date') }}</th>
+        <th scope="col">{{ $t('cabinet.status') }}</th>
         <th scope="col">&nbsp;</th>
       </tr>
       </thead>
@@ -17,8 +17,15 @@
         <td><span>{{ loan.contract_number }}</span></td>
         <td><span class="status-zaima">{{ loan.sum }} тг</span></td>
         <td><span>{{ loan.pay_in }} тг</span></td>
-        <td><span>{{ moment(loan.pay_out_at.date).format('DD.MM.YYYY') }}</span></td>
-        <td><span>{{ moment(loan.pay_off_at.date).format('DD.MM.YYYY') }}</span></td>
+        <td>
+          <span v-if="typeof loan.pay_out_at === Object && loan.pay_out_at.hasOwnProperty('date')">
+            {{ moment(loan.pay_out_at.date).format('DD.MM.YYYY') }}</span>
+          <span v-else></span></td>
+        <td>
+          <span v-if="typeof loan.pay_off_at === Object && loan.pay_off_at.hasOwnProperty('date')">
+            {{ moment(loan.pay_off_at.date).format('DD.MM.YYYY') }}</span>
+          <span v-else></span>
+        </td>
         <td>
           <Button :status="loan.status" :loanID="loan.id" @actions="actions"/>
         </td>
@@ -28,7 +35,7 @@
               type="button"
               class="btn btn-primary"
               @click="$refs.RepaymentModal.modalInit(loan.id)"
-          >{{$t('buttons.pay')}}
+          >{{ $t('buttons.pay') }}
           </button>
 
           <button
@@ -36,7 +43,7 @@
               type="button"
               class="btn btn-primary"
               @click="actions({loanID: loan.id, action: 'selectPaymentMethod'})"
-          >{{$t('buttons.payment_method')}}
+          >{{ $t('buttons.payment_method') }}
           </button>
 
           <button
@@ -44,7 +51,7 @@
               type="button"
               class="btn btn-primary"
               @click="actions({loanID: loan.id, action: 'waitingSigningContract'})"
-          >{{$t('buttons.download_contract')}}
+          >{{ $t('buttons.download_contract') }}
           </button>
 
           <button
@@ -52,7 +59,7 @@
               type="button"
               class="btn btn-primary"
               @click="actions({loanID: loan.id, action: 'confirmSignBySMS'})"
-          >{{$t('buttons.send_sms')}}
+          >{{ $t('buttons.send_sms') }}
           </button>
 
           <button
@@ -60,7 +67,7 @@
               type="button"
               class="btn btn-primary"
               @click="actions({loanID: loan.id, action: 'signBySMS'})"
-          >{{$t('buttons.sign_contract')}}
+          >{{ $t('buttons.sign_contract') }}
           </button>
 
           <button
@@ -68,7 +75,7 @@
               type="button"
               class="btn btn-primary"
               @click="actions({loanID: loan.id, action: 'getMoney'})"
-          >{{$t('buttons.get_money')}}
+          >{{ $t('buttons.get_money') }}
           </button>
 
           <button
@@ -76,7 +83,7 @@
               type="button"
               class="btn btn-danger"
               @click="actions({loanID: loan.id, action: 'overDue'})"
-          >{{$t('buttons.message')}}
+          >{{ $t('buttons.message') }}
           </button>
 
         </td>
@@ -84,25 +91,25 @@
       </tbody>
     </table>
 
-      <div class="contract-link d-flex mt-3" v-if="activeLoan[0].contract_link">
-        <a :href="activeLoan[0].contract_link" target="_blank">
-          <img style="position: relative; top: 4px; width: 36px" src="@/assets/pdf_icon.svg" alt="alt">
-          <span>{{$t('buttons.download_contract')}}</span>
-        </a>
-      </div>
+    <div class="contract-link d-flex mt-3" v-if="activeLoan[0].contract_link">
+      <a :href="activeLoan[0].contract_link" target="_blank">
+        <img style="position: relative; top: 4px; width: 36px" src="@/assets/pdf_icon.svg" alt="alt">
+        <span>{{ $t('buttons.download_contract') }}</span>
+      </a>
+    </div>
 
-<!--    <nav aria-label="Page navigation example">-->
-<!--      <ul class="pagination justify-content-end mt-3">-->
-<!--        <li class="page-item disabled">-->
-<!--          <a class="page-link arrow-left" href="#" tabindex="-1"></a>-->
-<!--        </li>-->
-<!--        <li class="page-item active"><a class="page-link" href="#">1</a></li>-->
-<!--        <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-<!--        <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-<!--        <li class="page-item"><a class="page-link arrow-right mr-0" href="#"></a>-->
-<!--        </li>-->
-<!--      </ul>-->
-<!--    </nav>-->
+    <!--    <nav aria-label="Page navigation example">-->
+    <!--      <ul class="pagination justify-content-end mt-3">-->
+    <!--        <li class="page-item disabled">-->
+    <!--          <a class="page-link arrow-left" href="#" tabindex="-1"></a>-->
+    <!--        </li>-->
+    <!--        <li class="page-item active"><a class="page-link" href="#">1</a></li>-->
+    <!--        <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+    <!--        <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+    <!--        <li class="page-item"><a class="page-link arrow-right mr-0" href="#"></a>-->
+    <!--        </li>-->
+    <!--      </ul>-->
+    <!--    </nav>-->
 
     <PaymentMethod ref="PaymentMethodModal"/>
     <WaitingSigningContract ref="WaitingSigningContractModal"/>
@@ -142,6 +149,11 @@ export default {
   },
   data() {
     return {
+      test: {
+        first: {
+          time: 'string'
+        }
+      },
       loanID: null
     }
   },
@@ -164,7 +176,7 @@ export default {
         case 'getMoney':
           return this.$refs.GetMoneyModal.modalInit(value.loanID)
         case 'overDue':
-          return this.$store.commit('setError', this.$t('message.overDue') + '<br>' + "<a href='tel:+7 747 980 15 85'>+7 747 980 15 85</a>" )
+          return this.$store.commit('setError', this.$t('message.overDue') + '<br>' + "<a href='tel:+7 747 980 15 85'>+7 747 980 15 85</a>")
       }
     }
   },
@@ -177,15 +189,17 @@ export default {
 </script>
 
 <style scoped>
-.contract-link{
+.contract-link {
   cursor: pointer;
 }
-.contract-link span{
+
+.contract-link span {
   font-size: 18px;
   color: #507cff;
   transition: .25s ease;
 }
-.contract-link:hover span{
+
+.contract-link:hover span {
   color: #333;
 }
 </style>

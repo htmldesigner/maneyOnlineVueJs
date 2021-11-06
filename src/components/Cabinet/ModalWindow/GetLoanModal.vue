@@ -115,15 +115,6 @@ export default {
   },
 
   computed: {
-    // currentSum: {
-    //   get() {
-    //     return this.sum
-    //   },
-    //   set(value) {
-    //     console.log(value)
-    //     return this.sum = parseInt(value)
-    //   }
-    // },
     returnDay() {
       let date = moment().add(this.period, 'days')
       return date.format('DD.MM.YYYY')

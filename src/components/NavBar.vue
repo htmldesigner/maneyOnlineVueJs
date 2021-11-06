@@ -51,7 +51,6 @@
           </div>
           <div class="lang ml-auto mr-auto">
 
-
             <LocaleChanger/>
 
           </div>
