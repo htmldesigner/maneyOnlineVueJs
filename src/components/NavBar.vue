@@ -131,10 +131,9 @@ export default {
   mounted() {
     if (/Android|webOS|iPhone|BlackBerry|BB|PlayBook|IEMobile|Windows Phone|Kindle|Silk|Opera Mini/i.test(navigator.userAgent)) {
       const lang = document.querySelector(".lang")
-      if (lang) {
-        const navBar = document.createElement("div")
-        navBar.classList.add('navbar')
-        lang.append(navBar)
+      const navbar = document.querySelector(".navbar")
+      if (navbar && lang ) {
+        navbar.appendChild(lang)
       }
     }
   }
